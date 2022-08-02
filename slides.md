@@ -25,12 +25,12 @@ Slides available as [<mdi-github/> open source](https://github.com/klieret/every
 layout: two-cols
 ---
 
-# Pre-commit hooks
+# Pre-commit hooks 🪝
 Run small checks *before* you commit
 
 
-* **Problem:** How can I stop myself from committing low-quality code?
-* **Solution:** 
+* **⁉️ Problem:** How can I stop myself from committing low-quality code?
+* **💡Solution:** 
   * *git hooks* allow you to run scripts that are triggered by certain actions
   * a pre-commit hook is triggered every time you run `git commit`
     * in principle you can set them up yourself by placing scripts into `.git/hooks`
@@ -44,7 +44,7 @@ Run small checks *before* you commit
 
 
 
-* **Setting it up:**
+* **🏗️ Setting it up:**
   1. `pip3 install pre-commit`
   2. `cd <your repo>`
   3. `touch .pre-commit-config.yaml`
@@ -53,7 +53,7 @@ Run small checks *before* you commit
 
 ---
 
-# Pre-commit hooks
+# Pre-commit hooks 🪝
 A config that will always be useful
 
 ```yaml
@@ -84,6 +84,22 @@ ci:
 ---
 
 # Hot code reloading
+
+* **⁉️ Problem:** 
+  1. I have some code in a notebook and some code in a python file. 
+  2. I update my python file. 
+  3. Do I have to restart the kernel and rerun to see the changes?
+* **💡Solution:** No! Python supports a number of ways to "reload" imported code.
+
+Add
+
+```python
+%load_ext autoreload
+%autoreload 2
+```
+
+to your notebook (or IPython environment).
+
 
 ---
 
