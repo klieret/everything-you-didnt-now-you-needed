@@ -1,5 +1,11 @@
 # Everything you didn't know you needed
 
+[![PR welcome](https://img.shields.io/badge/PR-Welcome-%23FF8300.svg)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
+[![gh actions](https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/deploy.yml/badge.svg)](https://github.com/klieret/everything-you-didnt-now-you-needed/actions)
+
+> **Note**
+> 👉 [**Click here for rendered slides!**](https://klieret.github.io/everything-you-didnt-now-you-needed/) 👈
+
 A collection of tips and tricks revolving around python, the command line and more.
 
 Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
