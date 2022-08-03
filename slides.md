@@ -113,6 +113,8 @@ ci:
     -   id: pyupgrade
 ```
 
+* **Try it out**: Go [here](https://github.com/klieret/python-pre-commit-demo-tutorial) for a quick step-by-step tutorial
+
 ---
 layout: two-cols
 ---
