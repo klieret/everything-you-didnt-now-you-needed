@@ -10,6 +10,17 @@ A collection of tips and tricks revolving around python, the command line and mo
 
 Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
 
+## ✔️ Content
+
+* pre-commit
+* cookiecutter
+* SSH config
+* SSH escape sequences
+* Autojump
+* Command line kung-fu
+* Tracking Jupyter notebooks with git
+* ...
+
 ## 🧰 Local development
 
 The slides are built with [Slidev](https://github.com/slidevjs/slidev).
