@@ -130,15 +130,14 @@ layout: two-cols
   2. I update my python file.
   3. Do I have to restart the kernel and rerun to see the changes?
 * **💡Solution:** No! Python supports a number of ways to "reload" imported code.
-
-::right::
-
 * **Easiest example**: Add the following to your Jupyter notebook (or any IPython system) to reload all (!) modules every time you execute code
 
 ```python
 %load_ext autoreload
 %autoreload 2
 ```
+
+::right::
 
 * **More granular**:
 
