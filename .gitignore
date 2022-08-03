@@ -5,3 +5,5 @@ dist
 index.html
 .remote-assets
 components.d.ts
+**/__pycache__/**
+*.pyc
