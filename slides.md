@@ -98,12 +98,6 @@ ci:
     hooks:
     -   id: black
     -   id: black-jupyter
--   repo: https://github.com/pycqa/isort  # Sort imports and remove unused imports
-    rev: 5.10.1
-    hooks:
-      - id: isort
-        name: isort (python)
-        args: ["--profile", "black", ]
 -   repo: https://github.com/PyCQA/flake8  # Simple static checks
     rev: '4.0.1'
     hooks:
@@ -151,6 +145,7 @@ imp.reload(mymodule)
 ```
 
 * **Warning:** These tricks don't *always* work and there's some additional tricks (e.g., you might need to re-run `from mymodule import X` lines)
+* **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
 
 ---
 layout: two-cols
