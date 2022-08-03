@@ -90,6 +90,39 @@ ci:
 
 ---
 
+# Pre-commit hooks for python!
+
+```yaml
+-   repo: https://github.com/psf/black  # Reformat code without compromises!
+    rev: 22.6.0
+    hooks:
+    -   id: black
+    -   id: black-jupyter
+-   repo: https://github.com/pycqa/isort  # Sort imports and remove unused imports
+    rev: 5.10.1
+    hooks:
+      - id: isort
+        name: isort (python)
+        args: ["--profile", "black", ]
+-   repo: https://github.com/PyCQA/flake8  # Simple static checks
+    rev: '4.0.1'
+    hooks:
+    -   id: flake8
+        additional_dependencies: ['flake8-bugbear']
+-   repo: https://github.com/pre-commit/mirrors-mypy  # Check typing (slightly more advanced)
+    rev: 'v0.971'
+    hooks:
+    -   id: mypy
+-   repo: https://github.com/asottile/pyupgrade  # Automatically switch to using the newest python features
+    rev: v2.37.2
+    hooks:
+    -   id: pyupgrade
+```
+
+---
+layout: two-cols
+---
+
 # Hot code reloading
 
 * **⁉️ Problem:**
@@ -98,15 +131,27 @@ ci:
   3. Do I have to restart the kernel and rerun to see the changes?
 * **💡Solution:** No! Python supports a number of ways to "reload" imported code.
 
-Add
+::right::
+
+* **Easiest example**: Add the following to your Jupyter notebook (or any IPython system) to reload all (!) modules every time you execute code
 
 ```python
 %load_ext autoreload
 %autoreload 2
 ```
 
-to your notebook (or IPython environment).
+* **More granular**:
 
+```python
+import mymodule
+import imp
+
+# change mymodule
+
+imp.reload(mymodule)
+```
+
+* **Warning:** These tricks don't *always* work and there's some additional tricks (e.g., you might need to re-run `from mymodule import X` lines)
 
 ---
 layout: two-cols
@@ -122,8 +167,19 @@ layout: two-cols
 
 * **Examples**:
   * [scikit-hep project template](https://github.com/scikit-hep/cookie/): All the features, all the best-practices
-  * [my personal python template](https://github.com/scikit-hep/cookie/): Fewer features, easier to read (I think ;))
+  * [my personal python template](https://github.com/scikit-hep/cookie/): Fewer options, easier to read (I think ;))
 * **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
+
+* **Trying it out**:
+
+```bash
+pip3 install cookiecutter
+# alternative: cruft https://...
+cookiecutter https://github.com/scikit-hep/cookie/
+# e.g., select project type = setuptools
+# for the "traditional" way to set up your python
+# package
+```
 
 ---
 
@@ -157,26 +213,44 @@ Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or n
 * **💡Solution:** SSH Escape Sequences:
   * Hit <kbd>Enter</kbd> <kbd>~</kbd> <kbd>C</kbd> (now you should see a `ssh>` prompt)
   * Add `-L 8000:localhost:8000` <kbd>Enter</kbd> to forward port 8000
+  * You can add any other option (e.g., `-X`) to modify your existing connection
 
 ---
 
 # Autojump
 
+* **⁉️ Problem:** Changing directories in the terminal is cumbersome.
+* **💡Solution:** Autojump learns which directories you visit often. Hit `j <some part of directory name>` to directly jump there
+* Installation instructions on [github](https://github.com/wting/autojump)
+
+Usage:
+
+```bash
+cd codas-hep  # <-- autojump remembers this
+
+cd ../../my-directory
+cd some-subfolder
+
+j codas  # <-- get back to codas-hep folder
+```
+
 ---
 
 # oh-my-zsh!
 
-zsh, oh-my-zsh  for auto-complete on steroids (or fish?)
+
 
 ---
 
-# Jupyter and git
+# Tracking Jupyter notebooks with git
 
-Making Jupyter and git play together nicely
+* **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata (`git diff` becomes unreadable; merge conflicts appear often)
+* **💡Solutions:** You have several options
+  1. Always strip output from notebooks before committing (easy but half-hearted)
+  2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
+  3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs)
+  4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
 
----
-
-# GitHub autopilot
 
 ---
 
