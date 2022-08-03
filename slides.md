@@ -6,7 +6,7 @@ lineNumbers: true
 # some information about the slides, markdown enabled
 info: |
   ## Everything you didn't know you needed
-  
+
   Tipps and tricks for python, shell and more
 ---
 
@@ -22,6 +22,13 @@ CoDaS-HEP school 2022
 Slides available as [<mdi-github/> open source](https://github.com/klieret/everything-you-didnt-now-you-needed), contributions welcome.
 
 ---
+
+# How this lecture works
+
+* We showcase many different bits and pieces
+* Additional exercise material and instructions in the repository
+
+---
 layout: two-cols
 ---
 
@@ -30,17 +37,17 @@ Run small checks *before* you commit
 
 
 * **⁉️ Problem:** How can I stop myself from committing low-quality code?
-* **💡Solution:** 
+* **💡Solution:**
   * *git hooks* allow you to run scripts that are triggered by certain actions
   * a pre-commit hook is triggered every time you run `git commit`
     * in principle you can set them up yourself by placing scripts into `.git/hooks`
 
 ::right::
 
-* **Making it practical:**
+* **🧰 Making it practical:**
   * The [pre-commit framework](https://pre-commit.com/) is a python package that makes configuring pre-commit hooks easy!
   * All hooks are configured with a single `.pre-commit-config.yaml` file
-  * Few-clicks GitHub integration availble: [pre-commit.ci](https://pre-commit.ci/) 
+  * Few-clicks GitHub integration available: [pre-commit.ci](https://pre-commit.ci/)
 
 
 
@@ -85,9 +92,9 @@ ci:
 
 # Hot code reloading
 
-* **⁉️ Problem:** 
-  1. I have some code in a notebook and some code in a python file. 
-  2. I update my python file. 
+* **⁉️ Problem:**
+  1. I have some code in a notebook and some code in a python file.
+  2. I update my python file.
   3. Do I have to restart the kernel and rerun to see the changes?
 * **💡Solution:** No! Python supports a number of ways to "reload" imported code.
 
@@ -102,14 +109,54 @@ to your notebook (or IPython environment).
 
 
 ---
+layout: two-cols
+---
 
 # Cookiecutter
 
+* **⁉️ Problem:** Setting up e.g., a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
+* **💡Solution:** Creating templates
+* **🧰 Making it practical:** [cookiecutter](https://pypi.org/project/cookiecutter/) is a command line utility for project templates
+
+::right::
+
+* **Examples**:
+  * [scikit-hep project template](https://github.com/scikit-hep/cookie/): All the features, all the best-practices
+  * [my personal python template](https://github.com/scikit-hep/cookie/): Fewer features, easier to read (I think ;))
+* **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
+
 ---
 
-# SSH config
+# SSH Config
 
-Aliases for servers with Ssh_config , aliases for common git commands with git_config
+* **⁉️ Problem:** Typing long servernames and potentially tunnelling can be tiresome
+* **💡Solution:** Create configuration in  `~/.ssh/config`. You can even add pattern matching!
+
+```bash
+# Server I want to connect to
+Host tiger*
+    Hostname tiger.princeton.edu
+    User kl5675
+
+# Tunnel that I might use sometimes
+Host tigressgateway
+    Hostname tigressgateway.princeton.edu
+    User kl5675
+
+Host *-t
+    ProxyCommand ssh tigressgateway -W %h:%p
+```
+
+Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or not.
+
+---
+
+# SSH Escape Sequences
+
+* **⁉️ Problem:** I already have an SSH session. How can I quickly forward a port.
+* **💡Solution:** SSH Escape Sequences:
+  * Hit <kbd>Enter</kbd> <kbd>~</kbd> <kbd>C</kbd> (now you should see a `ssh>` prompt)
+  * Add `-L 8000:localhost:8000` <kbd>Enter</kbd> to forward port 8000
 
 ---
 
@@ -146,4 +193,3 @@ Making Jupyter and git play together nicely
 ---
 
 # Python libraries: Rich
-
