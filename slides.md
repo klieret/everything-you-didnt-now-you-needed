@@ -22,13 +22,6 @@ CoDaS-HEP school 2022
 Slides available as [<mdi-github/> open source](https://github.com/klieret/everything-you-didnt-now-you-needed), contributions welcome.
 
 ---
-
-# How this lecture works
-
-* We showcase many different bits and pieces
-* Additional exercise material and instructions in the repository
-
----
 layout: two-cols
 ---
 
@@ -126,12 +119,17 @@ layout: two-cols
   2. I update my python file.
   3. Do I have to restart the kernel and rerun to see the changes?
 * **💡Solution:** No! Python supports a number of ways to "reload" imported code.
-* **Easiest example**: Add the following to your Jupyter notebook (or any IPython system) to reload all (!) modules every time you execute code
+* **Easiest example**: Add the following to your Jupyter notebook<sup>1</sup> to reload all (!) modules every time you execute code
 
 ```python
 %load_ext autoreload
 %autoreload 2
 ```
+
+
+<Footnotes separator>
+  <Footnote :number=1>or any IPython system</Footnote>
+</Footnotes>
 
 ::right::
 
@@ -232,21 +230,70 @@ j codas  # <-- get back to codas-hep folder
 
 ---
 
-# oh-my-zsh!
+# Terminal kung-fu
 
+* 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd>
+* 💡 You can reference the last word of the previous command with `!$`
+
+```bash
+mkdir /path/to/some/directory/hello-world
+cd !$
+```
+
+* 💡 Many more tricks! Read up on your shell!
+* 💡 If you're using `bash`, consider switch to `zsh` (almost completely compatible) and install `oh-my-zsh` to get beautiful prompts, autocomplete on steroids and many small benefits
+
+```bash
+$ ~/D/P/x⇥
+~/Document/Projects/xonsh/
+$ part⇥
+this-is-part-of-a-filename
+```
 
 
 ---
 
 # Tracking Jupyter notebooks with git
 
-* **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata (`git diff` becomes unreadable; merge conflicts appear often)
+* **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata:
+  * `git diff` becomes unreadable
+  * merge conflicts appear often
 * **💡Solutions:** You have several options
   1. Always strip output from notebooks before committing (easy but half-hearted)
   2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
   3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs)
   4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
 
+
+---
+
+# Tracking Jupyter notebooks with git
+
+**Option 1:** Track notebooks but strip outputs before committing. Add the following pre-commit hook:
+
+```yaml
+-   repo: https://github.com/kynan/nbstripout
+    rev: 0.5.0
+    hooks:
+    -   id: nbstripout
+```
+
+**Option 2:** Synchronize Jupyter notebooks (untracked) to python files (tracked)
+
+```bash
+pip3 install jupytext
+echo "*.ipynb" >> ~/.gitignore  # <-- tell git to ignore noteboks
+jupytext --to py mynotebook.ipynb
+# Now you have mynotebook.py
+git commit mynotebook.py -m "..."
+git push
+# People modify the file online
+git pull  # <-- mynotebook.py got updated
+jupytext --sync  # <-- update mynotebook.ipynb
+# Now make changes to your mynotebook.ipynb
+jupytext --sync  # <-- now mynotebook.py got updated
+git commit ... && git push ...
+```
 
 ---
 
