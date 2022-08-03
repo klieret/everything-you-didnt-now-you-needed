@@ -1,5 +1,8 @@
 # Hot code reloading!
 
+Create a file `library.py` with the content `a = 4` or clone this repository
+and change to this directory.
+
 Open a Jupyter notebook or ipython console
 
 ```bash
