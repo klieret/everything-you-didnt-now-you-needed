@@ -1,6 +1,6 @@
 ---
 # try also 'default' to start simple
-theme: default
+theme: academic
 # show line numbers in code blocks
 lineNumbers: true
 # some information about the slides, markdown enabled
