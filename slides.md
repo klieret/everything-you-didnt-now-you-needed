@@ -299,6 +299,23 @@ git commit ... && git push ...
 
 ---
 
+# Avoiding dependency hell
+
+* **⁉️ Problem:** Python packages depend on other packages depending on other packages causing a conflict.
+* **💡Solution:** Use conda or virtual environments (`venv`, `virtualenv`, `virtualenvwrapper`)
+
+&nbsp;
+
+* **⁉️ Problem:** What about `pip`-installable executables?
+* **💡Solution:** Install them with `pipx` instead of `pip`!
+  * Examples:
+    * `pre-commit`,
+    * `black`,
+    * `cookiecutter`
+    * `uproot-browser`
+
+---
+
 # Lockfiles
 
 * **⁉️ Problem:** Upgrades _can_ break things.
