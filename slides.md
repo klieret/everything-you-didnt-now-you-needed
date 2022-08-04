@@ -11,7 +11,7 @@ info: |
 ---
 
 # Everything\* you didn't know you needed
-\*well, some things
+\*blatant marketing nonsense
 
 Kilian Lieret and Henry Schreiner
 
