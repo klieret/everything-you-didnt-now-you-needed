@@ -764,7 +764,7 @@ Other metadata should go there too, but that's the minimum. See links:
 # Binary packaging
 
 
-* **⁉️ Problem:** Making a package which binaries is hard.
+* **⁉️ Problem:** Making a package with binaries is hard.
 * **💡Solution:** Some parts are easy, and I'm working on making the other parts easy too!
 
 ---
