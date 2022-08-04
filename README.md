@@ -13,13 +13,23 @@ Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch
 ## ✔️ Content
 
 * pre-commit
+* Hot code reloading
 * cookiecutter
 * SSH config
 * SSH escape sequences
 * Autojump
 * Command line kung-fu
 * Tracking Jupyter notebooks with git
-* ...
+* Lockfiles and locking package managers
+* Task runners
+* PyTest tricks
+* Type checking
+* Textualize
+* WebAssembly
+* Packaging
+* Binary packaging
+
+
 
 ## 🧰 Local development
 

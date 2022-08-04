@@ -297,16 +297,564 @@ git commit ... && git push ...
 
 ---
 
-# Lockfiles and locking package managers
+# Lockfiles
+
+* **⁉️ Problem:** Upgrades _can_ break things.
+* **⛔️Not a solution:** Don't add upper caps to _everything_! Only things with 50%+ chance of breaking.
+* **💡Solution:** Use lockfiles.
+
+Your CI and/or application (including an analysis) should have a _completely pinned environment_ that works.
+This is not your install requirements for a library!
+
+```bash
+pip install pip-tools
+pip-compile requirements.in  # -> requirements.txt
+```
+
+Now you get a locked requirements file that can be installed:
+
+```bash
+pip install -r requirements.txt
+```
 
 ---
 
-# Task runners (nox, possibly hatch)
+# Locking package managers
+
+
+Locking package managers (`pdm`, `poetry`, `pipenv`) give you this with a nice all-in-one CLI:
+
+```bash
+pdm init # Setup environment using existing lockfile or general requirements
+
+# Modify pyproject.toml as needed
+
+pdm add numpy  # Shortcut for adding to toml + install in venv
+```
+
+You'll also have a `pdm.lock` file tracking the environment it created.
+You can update the locks:
+
+```bash
+pdm update
+```
+
+Read up on how to use the environment that this makes to run your app.
 
 ---
 
-# PyTest tricks
+# Task runners
+
+* **⁉️ Problem:** There are lots of way to setup environments, lots of ways to run things.
+* **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
+* Nox is nice because it uses Python for configuration, and prints what it is doing.
+
+
+```python
+import nox
+
+@nox.session
+def tests(session):
+    session.install(".[test]")
+    session.run("pytest")
+```
 
 ---
 
-# Python libraries: Rich
+# Task runners
+
+* **⁉️ Problem:** There are lots of way to setup environments, lots of ways to run things.
+* **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
+* Nox is nice because it uses Python for configuration, and prints what it is doing.
+
+```python
+import nox
+
+@nox.session
+def tests(session: nox.Session) -> None:
+    """
+    Run the unit and regular tests.
+    """
+    session.install(".[test]")
+    session.run("pytest", *session.posargs)
+```
+
+---
+layout: two-cols
+---
+
+# Task runners
+
+Example 1: adapted from `PyPA/manylinux`
+
+```python
+@nox.session(python=["3.9", "3.10", "3.11"])
+def update_python_dependencies(session):
+    session.install("pip-tools")
+    session.run(
+        "pip-compile", # Usually just need this
+        "--generate-hashes",
+        "requirements.in", # and this
+        "--upgrade",
+        "--output-file",
+        f"requirements{session.python}.txt",
+    )
+```
+
+Example 2: `python.packaging.org`
+
+```python
+@nox.session(py="3")
+def preview(session):
+    session.install("sphinx-autobuild")
+    build(session, autobuild=True)
+```
+
+::right::
+
+
+```python
+@nox.session(py="3")
+def build(session, autobuild=False):
+    session.install("-r", "requirements.txt")
+    shutil.rmtree(target_build_dir,
+                  ignore_errors=True)
+
+    if autobuild:
+        command = "sphinx-autobuild"
+        extra_args = "-H", "0.0.0.0"
+    else:
+        command = "sphinx-build"
+        extra_args = (
+            "--color",
+            "--keep-going",
+        )
+
+    session.run(
+        command, *extra_args,
+        "-j", "auto",
+        "-b", "html",
+        "-n", "-W",
+        *session.posargs,
+        "source", "build",
+    )
+```
+
+---
+
+# pytest tricks (config)
+
+Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
+
+And reminder: pytest looks like this:
+
+```python
+def test_funct():
+    assert 4 == 2**2
+```
+
+Let's start with the first tip: your `project.toml` file should look like this:
+
+```toml
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-ra", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = ["error"]
+log_cli_level = "info"
+testpaths = ["tests"]
+```
+
+---
+
+# pytest tricks (running)
+
+* `--showlocals`: Show all the local variables on failure
+* `--pdb`: Drop directly into a debugger on failure
+* `--trace --lf`: Run the last failure & start in a debugger
+* You can also add `breakpoint()` in your code to get into a debugger
+
+
+---
+layout: two-cols
+---
+
+# pytest tricks (running)
+
+### Approx
+
+```python
+def test_approx():
+    0.3333333333333 == pytest.approx(1 / 3)
+```
+
+This works natively on arrays, as well!
+
+### Test for errors
+
+```python
+def test_raises():
+    with pytest.raises(ZeroDivisionError):
+        1 / 0
+```
+
+### Marks
+
+
+```python
+@pytest.mark.skipif("sys.version_info >= (3, 7)")
+def test_only_on_37plus():
+    x = 3
+    assert f"{x = }" == "x = 3"
+```
+
+::right::
+
+### Fixtures allow reuse, setup, etc
+
+There are quite a few built-in fixtures. And you can write more:
+
+```python
+@pytest.fixture(
+    params=["Linux", "Darwin", "Windows"],
+    autouse=True)
+def platform_system(request, monkeypatch):
+    monkeypatch.setattr(
+        platform, "system", lambda _: request.param)
+
+def test_thing(platform: str):
+    assert platform in {"Linux", "Darwin", "Windows"}
+```
+
+### Monkeypatching
+
+System IO, GUIs, hardware, slow processes; there are a lot of things that are hard to test! Use monkeypatching to keep your tests fast and "unit".
+
+---
+
+# Type checking
+
+* **⁉️ Problem:** Compilers catch lots of errors in compiled languages that are runtime errors in Python! Python can't be used for lots of code!
+* **💡Solution:** Add types and run a type checker.
+
+Typed code looks like this:
+
+```python
+def f(x: float) -> float:
+    y = x**2
+    return y
+```
+
+* Functions always have types in and out
+* Variable definitions rarely have types
+
+How do we use it?
+
+```bash
+mypy --strict tmp.py
+  Success: no issues found in 1 source file
+```
+
+Some type checkers: MyPy (Python), Pyright (Microsoft), Pytype (Google), or Pyre (Meta).
+
+---
+
+# Type checking (details)
+
+* Adds text - but adds _checked content_ for the reader!
+* External vs. internal typing
+* Libraries need to provide typing _or_ stubs can be written
+* Many stubs are available, and many libraries have types (numpy, for example)
+* An _active_ place of development for Python & libraries!
+
+
+```python
+from __future__ import annotations
+
+
+def f(x: int) -> list[int]:
+    return list(range(x))
+
+
+def g(x: str | int) -> None:
+    if isinstance(x, str):
+        print("string", x.lower())
+    else:
+        print("int", x)
+```
+---
+
+# Type checking (Protocol)
+
+But Python is duck-typed! Nooooooo!
+
+<v-click>
+
+Duck typing can be formalized by a Protocol:
+
+```python {all|3-5|7-8|10-12|14-15}
+from typing import Protocol  # or typing_extensions for < 3.8
+
+class Duck(Protocol):
+    def quack() -> str:
+        ...
+
+def pester_duck(a_duck: Duck) -> None:
+    print(a_duck.quack())
+
+class MyDuck:
+    def quack() -> str:
+        return "quack"
+
+if typing.TYPE_CHECKING:
+    _: Duck = typing.cast(MyDuck, None)
+```
+
+</v-click>
+
+---
+
+# Type checking (pre-commit)
+
+```yaml
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: "v0.971"
+  hooks:
+    - id: mypy
+      files: src
+      args: []
+      additional_dependencies: [numpy==1.22.1]
+```
+
+* Args should be empty, or have things you add (pre-commit's default is poor)
+* Additional dependencies can exactly control your environment for getting types
+
+---
+
+# Python libraries: Textualize - Rich, Textual, Rich-cli
+
+One of the fastest growing library (family) is Rich and co. Recently Rich was even vendored into Pip!
+
+
+
+---
+layout: two-cols
+---
+
+## Rich: Beautiful terminal output
+
+Rich is not just a "color terminal" library.
+
+<v-clicks>
+
+- Color and styles
+- Console markup
+- Syntax highlighting
+- Tables, panels, trees
+- Progress bars and live displays
+- Logging handlers
+- Inspection
+- Traceback formatter
+- Render to SVG
+
+</v-clicks>
+
+::right::
+
+<v-click>
+
+![](https://rich.readthedocs.io/en/stable/_images/svg_export.svg)
+
+</v-click>
+
+---
+
+## Textual: GUI? No, TUI!
+
+New "CSS" version coming soon!
+
+![](https://github.com/Textualize/textual/raw/main/imgs/textual.png)
+
+---
+layout: two-cols
+---
+
+## Rich-cli: Rich as a command line tool
+
+
+<img src="https://raw.githubusercontent.com/Textualize/rich-cli/main/imgs/syntax1.png" style="width:95%;"/>
+
+<img src="https://raw.githubusercontent.com/Textualize/rich-cli/main/imgs/markdown1.png" style="width:95%;"/>
+
+::right::
+
+![](https://raw.githubusercontent.com/Textualize/rich-cli/main/imgs/rich-cli-splash.jpg)
+
+---
+
+# WebAssembly
+
+* **⁉️ Problem:** Distributing code is hard. Binder takes time to start & requires running the code one someone else's machine.
+* **💡Solution:** Use the browser to _run_ the code with a WebAssembly distribution, like Pyodide. Python 3.11 officially supports it now too! Binaries may be provided around 3.12!
+
+
+## Pyodide
+
+A distribution of CPython 3.10 including ~100 binary packages like SciPy, Pandas, boost-histogram (Hist), etc.
+
+Examples:
+
+* https://henryiii.github.io/level-up-your-python/live/lab/index.html
+* https://scikit-hep.org/developer/reporeview
+
+## PyScript
+
+An Python interface for Pyodide in HTML.
+
+---
+
+# WebAssembly - PyScript
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello, World!</title>
+  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+</head>
+<body>
+  <py-script>print("Hello, World!")</py-script>
+</body>
+</html>
+```
+
+https://realpython.com/pyscript-python-in-browser
+
+---
+
+# Modern packaging
+
+* **⁉️ Problem:** Making a package is hard.
+* **💡Solution:** It's not hard anymore. You just need to use modern packaging and avoid old examples.
+
+
+```toml
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "package"
+version = "0.0.1"
+```
+
+Other metadata should go there too, but that's the minimum. See links:
+
+* https://scikit-hep.org/developer/pep621
+* https://packaging.python.org/en/latest/tutorials/packaging-projects
+
+`scikit-hep/cookie` supports 11 backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
+
+---
+
+# Binary packaging
+
+
+* **⁉️ Problem:** Making a package which binaries is hard.
+* **💡Solution:** Some parts are easy, and I'm working on making the other parts easy too!
+
+---
+
+## Making the code
+
+Use a tool like pybind11, Cython, or MyPyC. It's hard to get the C API right!
+
+```cpp
+#include <pybind11/pybind11.hpp>
+
+int add(int i, int j) {
+    return i + j;
+}
+
+PYBIND11_MODULE(example, m) {
+    m.def("add", &add);
+}
+```
+
+Header only, pure C++! No dependencies, no pre-compile step, no new language.
+
+---
+layout: two-cols
+---
+
+## Configuring the build
+
+I'm working on scikit-build for the next three years! CMake for Python packaging.
+
+Currently based on distutils & setuptools - but will be rewritten!
+
+
+::right::
+
+Org of several packages:
+
+* Scikit-build
+* CMake for Python
+* Ninja for Python
+* moderncmakedomain
+* Examples
+
+---
+layout: two-cols
+---
+
+## Building the binaries
+
+Redistributable wheel builder.
+
+* Targeting macOS 10.9+
+* Apple Silicon cross-compiling 3.8+
+* All variants of manylinux (including emulation)
+* musllinux
+* PyPy 3.7-3.9
+* Repairing and testing wheels
+* Reproducible pinned defaults (can unpin)
+
+
+Local runs supported too!
+
+```bash
+pipx run cibuildwheel --platform linux
+```
+
+::right::
+
+### GitHub actions example
+
+```yaml
+on: [push, pull_request]
+
+jobs:
+  build_wheels:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - ubuntu-22.04
+        - windows-2022
+        - macos-11
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build wheels
+      uses: pypa/cibuildwheel@v2.8.1
+
+    - uses: actions/upload-artifact@v3
+      with:
+        path: ./wheelhouse/*.whl
+```
