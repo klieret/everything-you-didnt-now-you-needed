@@ -306,6 +306,8 @@ git commit ... && git push ...
 
 &nbsp;
 
+<v-click>
+
 * **⁉️ Problem:** What about `pip`-installable executables?
 * **💡Solution:** Install them with `pipx` instead of `pip`!
   * Examples:
@@ -313,6 +315,8 @@ git commit ... && git push ...
     * `black`
     * `cookiecutter`
     * `uproot-browser`
+
+</v-click>
 
 ---
 
