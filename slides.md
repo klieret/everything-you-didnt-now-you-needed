@@ -309,8 +309,8 @@ git commit ... && git push ...
 * **⁉️ Problem:** What about `pip`-installable executables?
 * **💡Solution:** Install them with `pipx` instead of `pip`!
   * Examples:
-    * `pre-commit`,
-    * `black`,
+    * `pre-commit`
+    * `black`
     * `cookiecutter`
     * `uproot-browser`
 
