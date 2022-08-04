@@ -7,7 +7,7 @@ lineNumbers: true
 info: |
   ## Everything you didn't know you needed
 
-  Tipps and tricks for python, shell and more
+  Tips and tricks for python, shell and more
 ---
 
 # Everything\* you didn't know you needed
@@ -54,32 +54,33 @@ Run small checks *before* you commit
 ---
 
 # Pre-commit hooks 🪝
-A config that will always be useful
+A config that will always be useful.
 
 ```yaml
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.3.0
-    hooks:
-    -   id: check-added-large-files
-    -   id: check-case-conflict
-    -   id: check-merge-conflict
-    -   id: detect-private-key
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.3.0
+  hooks:
+  - id: check-added-large-files
+  - id: check-case-conflict
+  - id: check-merge-conflict
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
 
--   repo: https://github.com/codespell-project/codespell  # the spell checker with ~0 false positives
-    rev: 'v2.1.0'
-    hooks:
-    -   id: codespell
-        # uncomment and add a codespell.txt file to catch exceptions
-        # args: ["-I", "codespell.txt"]
+- repo: https://github.com/codespell-project/codespell  # the spell checker with ~0 false positives
+  rev: 'v2.1.0'
+  hooks:
+  - id: codespell
+    # uncomment and add a codespell.txt file to catch exceptions
+    # args: ["-I", "codespell.txt"]
 
 # Make a github bot open PRs to update the `rev` field periodically
 ci:
     autoupdate_schedule: monthly
-
 ```
+
+See https://scikit-hep.org/developer/style
 
 ---
 
@@ -92,7 +93,7 @@ ci:
     -   id: black
     -   id: black-jupyter
 -   repo: https://github.com/PyCQA/flake8  # Simple static checks
-    rev: '4.0.1'
+    rev: '5.0.1'
     hooks:
     -   id: flake8
         additional_dependencies: ['flake8-bugbear']
@@ -100,10 +101,11 @@ ci:
     rev: 'v0.971'
     hooks:
     -   id: mypy
--   repo: https://github.com/asottile/pyupgrade  # Automatically switch to using the newest python features
+-   repo: https://github.com/asottile/pyupgrade  # Automatically upgrade old Python syntax
     rev: v2.37.2
     hooks:
     -   id: pyupgrade
+        args: [--py37-plus]
 ```
 
 * **Try it out**: Go [here](https://github.com/klieret/python-pre-commit-demo-tutorial) for a quick step-by-step tutorial
@@ -272,10 +274,10 @@ this-is-part-of-a-filename
 **Option 1:** Track notebooks but strip outputs before committing. Add the following pre-commit hook:
 
 ```yaml
--   repo: https://github.com/kynan/nbstripout
-    rev: 0.5.0
-    hooks:
-    -   id: nbstripout
+- repo: https://github.com/kynan/nbstripout
+  rev: 0.5.0
+  hooks:
+  - id: nbstripout
 ```
 
 **Option 2:** Synchronize Jupyter notebooks (untracked) to python files (tracked)
