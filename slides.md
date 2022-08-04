@@ -45,7 +45,7 @@ Run small checks *before* you commit
 
 
 * **🏗️ Setting it up:**
-  1. `pip3 install pre-commit`
+  1. `pipx install pre-commit`
   2. `cd <your repo>`
   3. `touch .pre-commit-config.yaml`
   3. `pre-commit install`
@@ -167,7 +167,7 @@ layout: two-cols
 * **Trying it out**:
 
 ```bash
-pip3 install cookiecutter
+pipx install cookiecutter
 # alternative: cruft https://...
 cookiecutter https://github.com/scikit-hep/cookie/
 # e.g., select project type = setuptools
@@ -281,7 +281,7 @@ this-is-part-of-a-filename
 **Option 2:** Synchronize Jupyter notebooks (untracked) to python files (tracked)
 
 ```bash
-pip3 install jupytext
+pipx install jupytext
 echo "*.ipynb" >> ~/.gitignore  # <-- tell git to ignore noteboks
 jupytext --to py mynotebook.ipynb
 # Now you have mynotebook.py
