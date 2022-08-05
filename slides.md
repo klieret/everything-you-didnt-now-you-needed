@@ -221,7 +221,7 @@ Host tigressgateway
     User kl5675
 
 Host *-t
-    ProxyCommand ssh tigressgateway -W %h:%p
+    ProxyJump tigressgateway
 ```
 
 Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or not.
