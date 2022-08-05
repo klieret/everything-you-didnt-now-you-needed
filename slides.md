@@ -613,7 +613,7 @@ def platform_system(request, monkeypatch):
     monkeypatch.setattr(
         platform, "system", lambda _: request.param)
 
-def test_thing(platform: str):
+def test_thing(platform_system: str):
     assert platform in {"Linux", "Darwin", "Windows"}
 ```
 
