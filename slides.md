@@ -30,20 +30,24 @@ Run small checks *before* you commit
 
 
 * **⁉️ Problem:** How can I stop myself from committing low-quality code?
+
+<v-click>
+
 * **💡Solution:**
   * *git hooks* allow you to run scripts that are triggered by certain actions
   * a pre-commit hook is triggered every time you run `git commit`
     * in principle you can set them up yourself by placing scripts into `.git/hooks`
 
+</v-click>
+
 ::right::
+
+<v-click>
 
 * **🧰 Making it practical:**
   * The [pre-commit framework](https://pre-commit.com/) is a python package that makes configuring pre-commit hooks easy!
   * All hooks are configured with a single `.pre-commit-config.yaml` file
   * Few-clicks GitHub integration available: [pre-commit.ci](https://pre-commit.ci/)
-
-
-
 * **🏗️ Setting it up:**
   1. `pipx install pre-commit`
   2. `cd <your repo>`
@@ -51,6 +55,7 @@ Run small checks *before* you commit
   3. `pre-commit install`
   4. Profit 🎉
 
+</v-click>
 ---
 
 # Pre-commit hooks 🪝
@@ -120,6 +125,9 @@ layout: two-cols
   1. I have some code in a notebook and some code in a python file.
   2. I update my python file.
   3. Do I have to restart the kernel and rerun to see the changes?
+
+<v-click>
+
 * **💡Solution:** No! Python supports a number of ways to "reload" imported code.
 * **Easiest example**: Add the following to your Jupyter notebook<sup>1</sup> to reload all (!) modules every time you execute code
 
@@ -133,7 +141,11 @@ layout: two-cols
   <Footnote :number=1>or any IPython system</Footnote>
 </Footnotes>
 
+</v-click>
+
 ::right::
+
+<v-click>
 
 * **More granular**:
 
@@ -149,17 +161,27 @@ imp.reload(mymodule)
 * **Warning:** These tricks don't *always* work and there's some additional tricks (e.g., you might need to re-run `from mymodule import X` lines)
 * **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
 
+</v-click>
+
 ---
 layout: two-cols
 ---
 
 # Cookiecutter
 
+
 * **⁉️ Problem:** Setting up e.g., a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
+
+<v-click>
+
 * **💡Solution:** Creating templates
 * **🧰 Making it practical:** [cookiecutter](https://pypi.org/project/cookiecutter/) is a command line utility for project templates
 
+</v-click>
+
 ::right::
+
+<v-click>
 
 * **Examples**:
   * [scikit-hep project template](https://github.com/scikit-hep/cookie/): All the features, all the best-practices
@@ -177,11 +199,16 @@ cookiecutter https://github.com/scikit-hep/cookie/
 # package
 ```
 
+</v-click>
+
 ---
 
 # SSH Config
 
 * **⁉️ Problem:** Typing long servernames and potentially tunnelling can be tiresome
+
+<v-click>
+
 * **💡Solution:** Create configuration in  `~/.ssh/config`. You can even add pattern matching!
 
 ```bash
@@ -201,21 +228,32 @@ Host *-t
 
 Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or not.
 
+</v-click>
+
 ---
 
 # SSH Escape Sequences
 
-* **⁉️ Problem:** I already have an SSH session. How can I quickly forward a port.
+* **⁉️ Problem:** I already have an SSH session. How can I quickly forward a port?
+
+<v-click>
+
 * **💡Solution:** SSH Escape Sequences:
-  * Hit <kbd>Enter</kbd> <kbd>~</kbd> <kbd>C</kbd> (now you should see a `ssh>` prompt)
+  * Hit <kbd>Enter</kbd> <kbd>~</kbd> <kbd>C</kbd>  (now you should see a `ssh>` prompt)
   * Add `-L 8000:localhost:8000` <kbd>Enter</kbd> to forward port 8000
   * You can add any other option (e.g., `-X`) to modify your existing connection
+  * More escape sequences available!
+
+</v-click>
 
 ---
 
 # Autojump
 
 * **⁉️ Problem:** Changing directories in the terminal is cumbersome.
+
+<v-click>
+
 * **💡Solution:** Autojump learns which directories you visit often. Hit `j <some part of directory name>` to directly jump there
 * Installation instructions on [github](https://github.com/wting/autojump)
 
@@ -230,6 +268,8 @@ cd some-subfolder
 j codas  # <-- get back to codas-hep folder
 ```
 
+</v-click>
+
 ---
 
 # Terminal kung-fu
@@ -243,6 +283,9 @@ cd !$
 ```
 
 * 💡 Many more tricks! Read up on your shell!
+
+<v-click>
+
 * 💡 If you're using `bash`, consider switch to `zsh` (almost completely compatible) and install `oh-my-zsh` to get beautiful prompts, autocomplete on steroids and many small benefits
 
 ```bash
@@ -252,6 +295,7 @@ $ part⇥
 this-is-part-of-a-filename
 ```
 
+</v-click>
 
 ---
 
@@ -260,12 +304,16 @@ this-is-part-of-a-filename
 * **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata:
   * `git diff` becomes unreadable
   * merge conflicts appear often
+
+<v-click>
+
 * **💡Solutions:** You have several options
   1. Always strip output from notebooks before committing (easy but half-hearted)
   2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
   3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs)
   4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
 
+</v-click>
 
 ---
 
@@ -279,6 +327,8 @@ this-is-part-of-a-filename
   hooks:
   - id: nbstripout
 ```
+
+<v-click>
 
 **Option 2:** Synchronize Jupyter notebooks (untracked) to python files (tracked)
 
@@ -296,6 +346,8 @@ jupytext --sync  # <-- update mynotebook.ipynb
 jupytext --sync  # <-- now mynotebook.py got updated
 git commit ... && git push ...
 ```
+
+</v-click>
 
 ---
 
