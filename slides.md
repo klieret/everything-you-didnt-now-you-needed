@@ -819,6 +819,7 @@ If you use a task runner, like nox, you should be able to avoid this most of the
 Textualize is one of the fastest growing library families. Recently Rich was even vendored into Pip!
 
 <v-click>
+
 ### progress bar demo (Using Python 3.11 TaskGroups, because why not)
 
 ```python
