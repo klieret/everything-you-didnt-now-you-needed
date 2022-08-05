@@ -272,7 +272,8 @@ j codas  # <-- get back to codas-hep folder
 
 # Terminal kung-fu
 
-* 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd>
+* 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd> - start typing
+   * Hit <kbd>Ctrl</kbd> <kbd>R</kbd> to navigate between different hits
 * 💡 You can reference the last word of the previous command with `!$`
 
 ```bash
