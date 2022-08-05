@@ -13,6 +13,7 @@
     "slidev-theme-academic": "^1.1.0"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.29"
+    "@iconify-json/mdi": "^1.1.29",
+    "playwright-chromium": "^1.24.2"
   }
 }
