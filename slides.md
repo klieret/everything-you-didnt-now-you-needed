@@ -734,6 +734,62 @@ if typing.TYPE_CHECKING:
 * You can use `mypyc` to compile (2-5x speedup for mypy, 2x speedup for black)
 
 ---
+layout: two-cols
+---
+
+# GitHub Actions: pages deploy
+
+Bonus: About a week ago GitHub Actions added direct deploy to pages!
+
+```yaml
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+```
+
+::right::
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v1
+
+      # Static site generation, latex, etc. here
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist/
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+```
+
+---
 
 # ACT (for GitHub Actions)
 
