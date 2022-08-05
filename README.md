@@ -23,6 +23,7 @@ Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch
 * Lockfiles and locking package managers
 * Task runners
 * PyTest tricks
+* ACT for GitHub Actions
 * Type checking
 * Textualize
 * WebAssembly

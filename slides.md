@@ -59,12 +59,12 @@ Run small checks *before* you commit
 ---
 
 # Pre-commit hooks 🪝
-A config that will always be useful.
+A config that will always be useful. Optional pre-commit.ci CI service.
 
 ```yaml
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
+  rev: 'v4.3.0'
   hooks:
   - id: check-added-large-files
   - id: check-case-conflict
@@ -77,23 +77,21 @@ repos:
   rev: 'v2.1.0'
   hooks:
   - id: codespell
-    # uncomment and add a codespell.txt file to catch exceptions
-    # args: ["-I", "codespell.txt"]
+    # args: ["-I", "codespell.txt"]  # Optiona, one of several ways to add exceptions
 
-# Make a github bot open PRs to update the `rev` field periodically
 ci:
-    autoupdate_schedule: monthly
+    autoupdate_schedule: monthly # default is weekly
 ```
 
-See https://scikit-hep.org/developer/style
+See https://scikit-hep.org/developer/style for many more, updated weekly!
 
----
+---a
 
 # Pre-commit hooks for python!
 
 ```yaml
 -   repo: https://github.com/psf/black  # Reformat code without compromises!
-    rev: 22.6.0
+    rev: '22.6.0'
     hooks:
     -   id: black
     -   id: black-jupyter
@@ -107,7 +105,7 @@ See https://scikit-hep.org/developer/style
     hooks:
     -   id: mypy
 -   repo: https://github.com/asottile/pyupgrade  # Automatically upgrade old Python syntax
-    rev: v2.37.2
+    rev: 'v2.37.2'
     hooks:
     -   id: pyupgrade
         args: [--py37-plus]
@@ -354,19 +352,23 @@ git commit ... && git push ...
 # Avoiding dependency hell
 
 * **⁉️ Problem:** Python packages depend on other packages depending on other packages causing a conflict.
-* **💡Solution:** Use conda or virtual environments (`venv`, `virtualenv`, `virtualenvwrapper`)
+* **💡Solution:** Use conda or virtual environments (`venv`, `virtualenv`, `virtualenvwrapper`);
+
+
+The first environment should be named `.venv`
+
+* The Python Launcher for Unix, `py` picks up `.venv` automatically!
+* Visual Studio Code does too, as do a growing number of other tools.
 
 &nbsp;
 
 <v-click>
 
 * **⁉️ Problem:** What about `pip`-installable executables?
-* **💡Solution:** Install them with `pipx` instead of `pip`!
-  * Examples:
-    * `pre-commit`
-    * `black`
-    * `cookiecutter`
-    * `uproot-browser`
+* **💡Solution:** Install them with `pipx` instead of `pip`! Examples:
+  * `pre-commit` • `black` • `cookiecutter` • `uproot-browser`
+
+You can also use `pipx run` to install & execute in one step, cached for a week!
 
 </v-click>
 
@@ -375,6 +377,9 @@ git commit ... && git push ...
 # Lockfiles
 
 * **⁉️ Problem:** Upgrades _can_ break things.
+
+<v-click>
+
 * **⛔️Not a solution:** Don't add upper caps to _everything_! Only things with 50%+ chance of breaking.
 * **💡Solution:** Use lockfiles.
 
@@ -391,6 +396,8 @@ Now you get a locked requirements file that can be installed:
 ```bash
 pip install -r requirements.txt
 ```
+
+</v-click>
 
 ---
 
@@ -421,6 +428,9 @@ Read up on how to use the environment that this makes to run your app.
 # Task runners
 
 * **⁉️ Problem:** There are lots of way to setup environments, lots of ways to run things.
+
+<v-click>
+
 * **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
 * Nox is nice because it uses Python for configuration, and prints what it is doing.
 
@@ -434,11 +444,15 @@ def tests(session):
     session.run("pytest")
 ```
 
+</v-click>
+
 ---
 
 # Task runners
 
 * **⁉️ Problem:** There are lots of way to setup environments, lots of ways to run things.
+
+
 * **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
 * Nox is nice because it uses Python for configuration, and prints what it is doing.
 
@@ -453,6 +467,7 @@ def tests(session: nox.Session) -> None:
     session.install(".[test]")
     session.run("pytest", *session.posargs)
 ```
+
 
 ---
 layout: two-cols
@@ -610,6 +625,9 @@ System IO, GUIs, hardware, slow processes; there are a lot of things that are ha
 # Type checking
 
 * **⁉️ Problem:** Compilers catch lots of errors in compiled languages that are runtime errors in Python! Python can't be used for lots of code!
+
+<v-click>
+
 * **💡Solution:** Add types and run a type checker.
 
 Typed code looks like this:
@@ -631,6 +649,8 @@ mypy --strict tmp.py
 ```
 
 Some type checkers: MyPy (Python), Pyright (Microsoft), Pytype (Google), or Pyre (Meta).
+
+</v-click>
 
 ---
 
@@ -704,13 +724,63 @@ if typing.TYPE_CHECKING:
 * Args should be empty, or have things you add (pre-commit's default is poor)
 * Additional dependencies can exactly control your environment for getting types
 
+## Benefits
+
+* Covers all your code without writing tests
+  * Including branches that you might forget to run, cases you might for forget to add, etc.
+* Adds vital information for your reader following your code
+* All mistakes displayed at once, good error messages
+* Unlike compiled languages, you can lie if you need to
+* You can use `mypyc` to compile (2-5x speedup for mypy, 2x speedup for black)
+
 ---
 
-# Python libraries: Textualize - Rich, Textual, Rich-cli
+# ACT (for GitHub Actions)
 
-One of the fastest growing library (family) is Rich and co. Recently Rich was even vendored into Pip!
+* **⁉️ Problem:** You use GitHub Actions for everything. But what if you want to test the run out locally?
 
+<v-click>
 
+* **💡Solution:** Use ACT (requires Docker)!
+
+```bash
+# Install with something like brew install act
+
+act  # Runs on: push
+
+act pull_request -j test  # runs the test job as if it was a pull request
+```
+
+If you use a task runner, like nox, you should be able to avoid this most of the time. But it's handy in a pinch! https://github.com/nektos/act
+
+</v-click>
+
+---
+
+# Python libraries: Rich, Textual, Rich-cli
+
+Textualize is one of the fastest growing library families. Recently Rich was even vendored into Pip!
+
+<v-click>
+### progress bar demo (Using Python 3.11 TaskGroups, because why not)
+
+```python
+from rich.progress import Progress
+import asyncio
+
+async def lots_of_work(n: int, progress: Progress) -> None:
+    for i in progress.track(range(n), description=f"[red]Computing {n}..."):
+        await asyncio.sleep(.1)
+
+async def main():
+    with Progress() as progress:
+        async with asyncio.TaskGroup() as g:
+            g.create_task(lots_of_work(40, progress))
+            g.create_task(lots_of_work(30, progress))
+
+asyncio.run(main())
+```
+</v-click>
 
 ---
 layout: two-cols
@@ -770,8 +840,14 @@ layout: two-cols
 # WebAssembly
 
 * **⁉️ Problem:** Distributing code is hard. Binder takes time to start & requires running the code one someone else's machine.
+
+<v-click>
+
 * **💡Solution:** Use the browser to _run_ the code with a WebAssembly distribution, like Pyodide. Python 3.11 officially supports it now too! Binaries may be provided around 3.12!
 
+</v-click>
+
+<v-click>
 
 ## Pyodide
 
@@ -782,10 +858,15 @@ Examples:
 * https://henryiii.github.io/level-up-your-python/live/lab/index.html
 * https://scikit-hep.org/developer/reporeview
 
+</v-click>
+
+<v-click>
+
 ## PyScript
 
 An Python interface for Pyodide in HTML.
 
+</v-click>
 ---
 
 # WebAssembly - PyScript
@@ -814,6 +895,9 @@ https://realpython.com/pyscript-python-in-browser
 # Modern packaging
 
 * **⁉️ Problem:** Making a package is hard.
+
+<v-click>
+
 * **💡Solution:** It's not hard anymore. You just need to use modern packaging and avoid old examples.
 
 
@@ -834,13 +918,20 @@ Other metadata should go there too, but that's the minimum. See links:
 
 `scikit-hep/cookie` supports 11 backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
 
+</v-click>
+
 ---
 
 # Binary packaging
 
 
 * **⁉️ Problem:** Making a package with binaries is hard.
+
+<v-click>
+
 * **💡Solution:** Some parts are easy, and I'm working on making the other parts easy too!
+
+</v-click>
 
 ---
 
