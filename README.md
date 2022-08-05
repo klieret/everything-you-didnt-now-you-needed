@@ -9,6 +9,7 @@
 A collection of tips and tricks revolving around python, the command line and more.
 
 Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
+A PDF version of the slides is available in the corresponding release.
 
 ## ✔️ Content
 
