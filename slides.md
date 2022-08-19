@@ -131,7 +131,7 @@ layout: two-cols
 
 ```python
 %load_ext autoreload
-%autoreload 2
+%autoreload 2  # reload everything
 ```
 
 
@@ -148,16 +148,16 @@ layout: two-cols
 * **More granular**:
 
 ```python
-import mymodule
-import imp
+%load_ext autoreload
+%autoreload 1  # <-- reload only some modules
 
-# change mymodule
-
-imp.reload(mymodule)
+# Mark for reloading
+%aimport foo
 ```
 
-* **Warning:** These tricks don't *always* work and there's some additional tricks (e.g., you might need to re-run `from mymodule import X` lines)
+* **Warning:** These tricks don't *always* work, but it should save you from a lot of restarts
 * **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
+* **More information**: See the [autoreload documentation](https://ipython.org/ipython-doc/3/config/extensions/autoreload.html)
 
 </v-click>
 
