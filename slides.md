@@ -157,7 +157,7 @@ layout: two-cols
 
 * **Warning:** These tricks don't *always* work, but it should save you from a lot of restarts
 * **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
-* **More information**: See the [autoreload documentation](https://ipython.org/ipython-doc/3/config/extensions/autoreload.html)
+* **More information**: See the [autoreload documentation](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html)
 
 </v-click>
 
