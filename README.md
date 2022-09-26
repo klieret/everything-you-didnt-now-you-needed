@@ -1,12 +1,15 @@
-# Everything you didn't know you needed
+<div align="center">
+<a href="https://klieret.github.io/everything-you-didnt-now-you-needed/"><h1>Everything you didn't know you needed</h1></a>
+<p><em>Tips and tricks for python, the command line and more.</em></p>
+<p align="center"><a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"><img src="https://img.shields.io/badge/PR-Welcome-%23FF8300.svg" alt="PR welcome"></a>
+<a href="https://github.com/klieret/everything-you-didnt-now-you-needed/actions"><img src="https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/deploy.yml/badge.svg" alt="gh actions"></a>
+</p>
+</div>
 
-[![PR welcome](https://img.shields.io/badge/PR-Welcome-%23FF8300.svg)](https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project)
-[![gh actions](https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/deploy.yml/badge.svg)](https://github.com/klieret/everything-you-didnt-now-you-needed/actions)
+---
 
 > **Note**
 > 👉 [**Click here for rendered slides!**](https://klieret.github.io/everything-you-didnt-now-you-needed/) 👈
-
-A collection of tips and tricks revolving around python, the command line and more.
 
 Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
 A PDF version of the slides is available in the corresponding release.
