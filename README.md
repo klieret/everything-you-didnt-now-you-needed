@@ -1,5 +1,5 @@
 <div align="center">
-<a href="https://klieret.github.io/everything-you-didnt-now-you-needed/"><h1>Everything you didn't know you needed</h1></a>
+<h1><a href="https://klieret.github.io/everything-you-didnt-now-you-needed/">Everything you didn't know you needed</a></h1>
 <p><em>Tips and tricks for python, the command line and more.</em></p>
 <p align="center"><a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"><img src="https://img.shields.io/badge/PR-Welcome-%23FF8300.svg" alt="PR welcome"></a>
 <a href="https://github.com/klieret/everything-you-didnt-now-you-needed/actions"><img src="https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/deploy.yml/badge.svg" alt="gh actions"></a>
