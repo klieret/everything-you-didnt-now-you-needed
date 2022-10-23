@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v2
 
       - name: List documents
         run: ls -l -R
