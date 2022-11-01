@@ -77,7 +77,7 @@ repos:
   rev: 'v2.1.0'
   hooks:
   - id: codespell
-    # args: ["-I", "codespell.txt"]  # Optiona, one of several ways to add exceptions
+    # args: ["-I", "codespell.txt"]  # Optional to add exceptions
 
 ci:
     autoupdate_schedule: monthly # default is weekly
