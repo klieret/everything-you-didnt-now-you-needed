@@ -94,7 +94,8 @@ See https://scikit-hep.org/developer/style for many more, updated weekly!
     rev: '22.6.0'
     hooks:
     -   id: black
-    -   id: black-jupyter
+    # or, if you also work with Jupyter notebooks
+    # -   id: black-jupyter
 -   repo: https://github.com/PyCQA/flake8  # Simple static checks
     rev: '5.0.1'
     hooks:
