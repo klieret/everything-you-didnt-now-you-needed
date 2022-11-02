@@ -274,7 +274,7 @@ cd !$
 </v-click>
 <v-click>
 
-* 💡 If you're using `bash`, consider switching to `zsh` (almost completely compatible) and install `oh-my-zsh` to get beautiful prompts, autocomplete on steroids and many small benefits
+* 💡 If you're using `bash`, consider switching to [`zsh`](https://en.wikipedia.org/wiki/Z_shell) (almost completely compatible) and install [`oh-my-zsh`](https://ohmyz.sh/) to get beautiful prompts, autocomplete on steroids and many small benefits
 
 ```bash
 $ ~/D/P/x⇥
@@ -314,7 +314,7 @@ j codas  # <-- get back to codas-hep folder
 
 # Explainshell
 
-* **⁉️ Problem:** What the hell does `:(){ return 1; };: || echo test` do?
+* **⁉️ Problem:** Understanding cryptic bash commands
 
 <v-click>
 
@@ -323,6 +323,18 @@ j codas  # <-- get back to codas-hep folder
 <img src="/explainshell.png" style="height: 80%; margin: auto;"/>
 
 </v-click>
+
+---
+
+# More shell tools
+
+* ⁉️ Visually browsing files on a server? 💡 Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger) (`pipx install ranger-fm`)
+
+<img src="/ranger.png" style="width: 50%; margin: auto;"/>
+
+* ⁉️ Using `grep` a lot? 💡 There are faster and more feature-rich alternatives. Example: [ripgrep](https://github.com/BurntSushi/ripgrep), [`ag`](https://github.com/ggreer/the_silver_searcher), ...
+* ⁉️ `man` pages are wasting your time? 💡 Try [`tldr`](https://tldr.sh/) (`pipx install tldr`)
+* ⁉️ Typeahead searching with fuzzy matching for command line arguments? 💡 Try [`fzf`](https://github.com/junegunn/fzf) with [shell integration](https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh): `vim ../**`<kbd>Tab</kbd> starts `fzf`
 
 ---
 
