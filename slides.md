@@ -22,6 +22,12 @@ CoDaS-HEP school 2022
 Slides available as [<mdi-github/> open source](https://github.com/klieret/everything-you-didnt-now-you-needed), contributions welcome.
 
 ---
+layout: center
+---
+
+# Git & starting new projects
+
+---
 layout: two-cols
 ---
 
@@ -151,6 +157,12 @@ cookiecutter https://github.com/scikit-hep/cookie/
 ```
 
 </v-click>
+
+---
+layout: center
+---
+
+# SSH & Terminal Kung-fu
 
 ---
 
@@ -331,22 +343,10 @@ j codas  # <-- get back to codas-hep folder
 </v-click>
 
 ---
+layout: center
+---
 
-# Tracking Jupyter notebooks with git
-
-* **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata:
-  * `git diff` becomes unreadable
-  * merge conflicts appear often
-
-<v-click>
-
-* **💡Solutions:** You have several options
-  1. Always strip output from notebooks before committing (easy but half-hearted)
-  2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
-  3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs). Example: [`nbdime`](https://nbdime.readthedocs.io/en/latest/)
-  4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
-
-</v-click>
+# Python
 
 ---
 layout: two-cols
@@ -393,6 +393,25 @@ layout: two-cols
 * **Warning:** These tricks don't *always* work, but it should save you from a lot of restarts
 * **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
 * **More information**: See the [autoreload documentation](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html)
+
+</v-click>
+
+---
+
+
+# Tracking Jupyter notebooks with git
+
+* **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata:
+  * `git diff` becomes unreadable
+  * merge conflicts appear often
+
+<v-click>
+
+* **💡Solutions:** You have several options
+  1. Always strip output from notebooks before committing (easy but half-hearted)
+  2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
+  3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs). Example: [`nbdime`](https://nbdime.readthedocs.io/en/latest/)
+  4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
 
 </v-click>
 
