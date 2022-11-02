@@ -541,23 +541,29 @@ def build(session, autobuild=False):
 
 Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
 
-And reminder: pytest looks like this:
+## Basics
+
+`pytest` discovers test functions named `test_...` in files `test_...`. For example:
 
 ```python
 def test_funct():
     assert 4 == 2**2
 ```
 
-Let's start with the first tip: your `project.toml` file should look like this:
+To run: `pip install pytest` and then `pytest` to discover & run them all.
+
+
+## First tip: your `project.toml` file
 
 ```toml
 [tool.pytest.ini_options]
-minversion = "6.0"
+minversion = "6.0"  # minimal version of pytest
+# report all; check that markers are configured; check that config is OK
 addopts = ["-ra", "--strict-markers", "--strict-config"]
-xfail_strict = true
+xfail_strict = true  # tests marked as failing must fail
 filterwarnings = ["error"]
 log_cli_level = "info"
-testpaths = ["tests"]
+testpaths = ["tests"]  # search for tests in "test" directory
 ```
 
 ---
