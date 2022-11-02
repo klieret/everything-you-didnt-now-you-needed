@@ -17,7 +17,7 @@ A PDF version of the slides is available in the corresponding release.
 ## ✔️ Content
 
 * pre-commit
-* Hot code reloading
+* Hot code reloading in python
 * cookiecutter
 * SSH config
 * SSH escape sequences
@@ -25,10 +25,10 @@ A PDF version of the slides is available in the corresponding release.
 * Terminal file managers
 * Tracking Jupyter notebooks with git
 * Lockfiles and locking package managers
-* Task runners
+* Task runners (`nox`)
 * PyTest tricks
 * ACT for GitHub Actions
-* Type checking
+* Type checking in python
 * Textualize
 * WebAssembly
 * Packaging
