@@ -3,6 +3,8 @@
 <p><em>Tips and tricks for python, the command line and more.</em></p>
 <p align="center"><a href="https://git-scm.com/book/en/v2/GitHub-Contributing-to-a-Project"><img src="https://img.shields.io/badge/PR-Welcome-%23FF8300.svg" alt="PR welcome"></a>
 <a href="https://github.com/klieret/everything-you-didnt-now-you-needed/actions"><img src="https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/deploy.yml/badge.svg" alt="gh actions"></a>
+<a href="https://results.pre-commit.ci/latest/github/klieret/everything-you-didnt-now-you-needed/main"><img src="https://results.pre-commit.ci/badge/github/klieret/everything-you-didnt-now-you-needed/main.svg" alt="pre-commit.ci status"></a>
+<a href="https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/check-links.yaml"><img src="https://github.com/klieret/everything-you-didnt-now-you-needed/actions/workflows/check-links.yaml/badge.svg" alt="Check Markdown links"></a>
 </p>
 </div>
 
