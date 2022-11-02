@@ -857,8 +857,6 @@ layout: two-cols
 
 Rich is not just a "color terminal" library.
 
-<v-clicks>
-
 - Color and styles
 - Console markup
 - Syntax highlighting
@@ -869,15 +867,9 @@ Rich is not just a "color terminal" library.
 - Traceback formatter
 - Render to SVG
 
-</v-clicks>
-
 ::right::
 
-<v-click>
-
 ![](https://rich.readthedocs.io/en/stable/_images/svg_export.svg)
-
-</v-click>
 
 ---
 
