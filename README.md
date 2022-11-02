@@ -37,6 +37,10 @@ A PDF version of the slides is available in the corresponding release.
 * Packaging
 * Binary packaging
 
+## 🔧 Note for participants
+
+Please also clone [this repository](https://github.com/klieret/python-pre-commit-demo-tutorial) before the start of the session.
+
 ## 🌐 Other resources
 
 * [Removing tedium from Princeton University](https://github.com/PrincetonUniversity/removing_tedium): While some small parts are specific to the setup in Princeton, the majority are very useful tips that can help everywhere!
