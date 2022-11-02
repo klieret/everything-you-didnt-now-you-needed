@@ -37,6 +37,8 @@ A PDF version of the slides is available in the corresponding release.
 ## 🌐 Other resources
 
 * [Removing tedium from Princeton University](https://github.com/PrincetonUniversity/removing_tedium): While some small parts are specific to the setup in Princeton, the majority are very useful tips that can help everywhere!
+* [Scikit-HEP developer guide](https://scikit-hep.org/developer): A very complete set of tips on how to set up your python package for success
+* [Levelling up your python](https://henryiii.github.io/level-up-your-python/notebooks/0%20Intro.html): Various bits of intermediate and advanced python
 
 ## 🧰 Local development
 
