@@ -398,7 +398,6 @@ layout: two-cols
 
 ---
 
-
 # Tracking Jupyter notebooks with git
 
 * **⁉️ Problem:** Tracking & collaborating on Jupyter notebooks with git is a mess because of binary outputs (images) and additional metadata:
@@ -445,6 +444,31 @@ jupytext --sync  # <-- update mynotebook.ipynb
 # Now make changes to your mynotebook.ipynb
 jupytext --sync  # <-- now mynotebook.py got updated
 git commit ... && git push ...
+```
+
+</v-click>
+
+---
+
+# Satic code checkers and Jupyter notebooks
+
+* **⁉️ Problem:** I still have lots of code in my notebooks. I still want to apply tools like black, pyupgrade, ... on the notebooks.
+
+<v-click>
+
+* **💡Solution:** [`nbqa`](https://github.com/nbQA-dev/nbQA) allows to apply a lot of tools to Jupyter notebooks
+
+```bash
+$ pip install nbqa
+
+$ nbqa black my_notebook.ipynb
+reformatted my_notebook.ipynb
+All done! ✨ 🍰 ✨
+1 files reformatted.
+
+
+$ nbqa pyupgrade my_notebook.ipynb --py37-plus
+Rewriting my_notebook.ipynb
 ```
 
 </v-click>
