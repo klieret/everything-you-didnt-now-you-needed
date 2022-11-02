@@ -312,9 +312,17 @@ j codas  # <-- get back to codas-hep folder
 
 ---
 
-# More tools for the terminal
+# Explainshell
 
-*
+* **⁉️ Problem:** What the hell does `:(){ return 1; };: || echo test` do?
+
+<v-click>
+
+* **💡Solutions:** Go to [explainshell.com](https://explainshell.com/explain?cmd=%3A%28%29%7B+return+1%3B+%7D%3B%3A+%7C%7C+echo+test)
+
+<img src="assets/explainshell.png" style="height: 80%; margin: auto;"/>
+
+</v-click>
 
 ---
 
