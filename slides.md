@@ -287,7 +287,37 @@ this-is-part-of-a-filename
 
 ---
 
-# Autojump
+# How to shell...
+
+* **⁉️ Problem:** `man` pages are wasting your time?
+* **💡Solution:**   Try [`tldr`](https://tldr.sh/) (`pipx install tldr`). Compare:
+
+
+<div style="align: center">
+&nbsp;
+<figure class="half" style="display:flex">
+<img src="/man.png" style="width:  35%"/>
+<img src="/tldr.png" style="width:  35%"/>
+</figure>
+</div>
+
+---
+
+# How to shell...
+
+* **⁉️ Problem:** Understanding cryptic bash commands
+
+<v-click>
+
+* **💡Solutions:** Go to [explainshell.com](https://explainshell.com/explain?cmd=%3A%28%29%7B+return+1%3B+%7D%3B%3A+%7C%7C+echo+test)
+
+<img src="/explainshell.png" style="height: 80%; margin: auto;"/>
+
+</v-click>
+
+---
+
+# File navigation and completion
 
 * **⁉️ Problem:** Changing directories in the terminal is cumbersome.
 
@@ -312,21 +342,7 @@ j codas  # <-- get back to codas-hep folder
 
 ---
 
-# Explainshell
-
-* **⁉️ Problem:** Understanding cryptic bash commands
-
-<v-click>
-
-* **💡Solutions:** Go to [explainshell.com](https://explainshell.com/explain?cmd=%3A%28%29%7B+return+1%3B+%7D%3B%3A+%7C%7C+echo+test)
-
-<img src="/explainshell.png" style="height: 80%; margin: auto;"/>
-
-</v-click>
-
----
-
-# More shell tools
+# File navigation and completion
 
 <v-click>
 
@@ -361,22 +377,6 @@ j codas  # <-- get back to codas-hep folder
 * **💡Solution:**  Try type-ahead-searching/fuzzy matching, e.g., with [`fzf`](https://github.com/junegunn/fzf) with [shell integration](https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh), e.g., `vim ../**`<kbd>Tab</kbd> starts searching with `fzf` in parent dir
 
 </v-click>
-
----
-
-# More shell tools
-
-* **⁉️ Problem:** `man` pages are wasting your time?
-* **💡Solution:**   Try [`tldr`](https://tldr.sh/) (`pipx install tldr`). Compare:
-
-
-<div style="align: center">
-&nbsp;
-<figure class="half" style="display:flex">
-<img src="/man.png" style="width:  35%"/>
-<img src="/tldr.png" style="width:  35%"/>
-</figure>
-</div>
 
 ---
 
