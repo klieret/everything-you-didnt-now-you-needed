@@ -249,6 +249,44 @@ Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or n
 
 ---
 
+# Terminal kung-fu
+
+<v-click>
+
+* 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd> - start typing
+   * Hit <kbd>Ctrl</kbd> <kbd>R</kbd> to navigate between different hits
+
+</v-click>
+<v-click>
+
+* 💡 You can reference the last word of the previous command with `!$`
+
+```bash
+mkdir /path/to/some/directory/hello-world
+cd !$
+```
+
+</v-click>
+<v-click>
+
+* 💡 Want to fix up a complicated command that just failed? Type `fc` to edit the command in your `$EDITOR`
+
+</v-click>
+<v-click>
+
+* 💡 If you're using `bash`, consider switching to `zsh` (almost completely compatible) and install `oh-my-zsh` to get beautiful prompts, autocomplete on steroids and many small benefits
+
+```bash
+$ ~/D/P/x⇥
+~/Document/Projects/xonsh/
+$ part⇥
+this-is-part-of-a-filename
+```
+
+</v-click>
+
+---
+
 # Autojump
 
 * **⁉️ Problem:** Changing directories in the terminal is cumbersome.
@@ -271,33 +309,12 @@ j codas  # <-- get back to codas-hep folder
 
 </v-click>
 
+
 ---
 
-# Terminal kung-fu
+# More tools for the terminal
 
-* 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd> - start typing
-   * Hit <kbd>Ctrl</kbd> <kbd>R</kbd> to navigate between different hits
-* 💡 You can reference the last word of the previous command with `!$`
-
-```bash
-mkdir /path/to/some/directory/hello-world
-cd !$
-```
-
-* 💡 Many more tricks! Read up on your shell!
-
-<v-click>
-
-* 💡 If you're using `bash`, consider switch to `zsh` (almost completely compatible) and install `oh-my-zsh` to get beautiful prompts, autocomplete on steroids and many small benefits
-
-```bash
-$ ~/D/P/x⇥
-~/Document/Projects/xonsh/
-$ part⇥
-this-is-part-of-a-filename
-```
-
-</v-click>
+*
 
 ---
 
