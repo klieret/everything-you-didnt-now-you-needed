@@ -694,7 +694,7 @@ testpaths = ["tests"]  # search for tests in "test" directory
 
 ---
 
-# pytest tricks (running)
+# pytest: Make testing fun
 
 * `--showlocals`: Show all the local variables on failure
 * `--pdb`: Drop directly into a debugger on failure
@@ -706,7 +706,7 @@ testpaths = ["tests"]  # search for tests in "test" directory
 layout: two-cols
 ---
 
-# pytest tricks (running)
+# pytest: Make testing fun
 
 ### Approx
 
@@ -751,15 +751,18 @@ def test_only_on_37plus():
 There are quite a few built-in fixtures. And you can write more:
 
 ```python
-@pytest.fixture(
-    params=["Linux", "Darwin", "Windows"],
-    autouse=True)
-def platform_system(request, monkeypatch):
-    monkeypatch.setattr(
-        platform, "system", lambda _: request.param)
+@pytest.fixture
+def my_complex_object():
+    mco = MyComplexObject(...)
+    mco.xyz = "asf"
+    ...
+    return mco
 
-def test_thing(platform_system: str):
-    assert platform in {"Linux", "Darwin", "Windows"}
+def test_get_value(my_complex_object):
+    assert my_complex_object.get_value() == ...
+
+def test_other_property(my_complex_object):
+    assert my_complex_object.property == ...
 ```
 
 </v-click>
