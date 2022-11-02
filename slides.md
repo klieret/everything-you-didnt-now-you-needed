@@ -677,8 +677,6 @@ To run: `pip install pytest` and then `pytest` to discover & run them all.
 
 ## First tip: your `project.toml` file
 
-Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
-
 ```toml
 [tool.pytest.ini_options]
 minversion = "6.0"  # minimal version of pytest
@@ -701,6 +699,10 @@ testpaths = ["tests"]  # search for tests in "test" directory
 * `--trace --lf`: Run the last failure & start in a debugger
 * You can also add `breakpoint()` in your code to get into a debugger
 
+
+&nbsp;
+
+Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
 
 ---
 layout: two-cols
@@ -784,8 +786,6 @@ System IO, GUIs, hardware, slow processes; there are a lot of things that are ha
 
 * **💡Solution:** Add types and run a type checker.
 
-Typed code looks like this:
-
 ```python
 def f(x: float) -> float:
     y = x**2
@@ -795,7 +795,10 @@ def f(x: float) -> float:
 * Functions always have types in and out
 * Variable definitions rarely have types
 
-How do we use it?
+</v-click>
+<v-click>
+
+How do we use it? (requires `pipx install mypy`)
 
 ```bash
 mypy --strict tmp.py
@@ -803,6 +806,8 @@ mypy --strict tmp.py
 ```
 
 Some type checkers: MyPy (Python), Pyright (Microsoft), Pytype (Google), or Pyre (Meta).
+
+👉 Example files available [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/typed_python).
 
 </v-click>
 
