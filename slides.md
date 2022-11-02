@@ -85,7 +85,7 @@ ci:
 
 See https://scikit-hep.org/developer/style for many more, updated weekly!
 
----a
+---
 
 # Pre-commit hooks for python!
 
@@ -121,8 +121,8 @@ layout: two-cols
 # Hot code reloading
 
 * **⁉️ Problem:**
-  1. I have some code in a notebook and some code in a python file.
-  2. I update my python file.
+  1. I have some code in a notebook and some code in a python file/library.
+  2. I update my python file/library.
   3. Do I have to restart the kernel and rerun to see the changes?
 
 <v-click>
@@ -328,13 +328,55 @@ j codas  # <-- get back to codas-hep folder
 
 # More shell tools
 
-* ⁉️ Visually browsing files on a server? 💡 Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger) (`pipx install ranger-fm`)
+<v-click>
+
+* **⁉️ Problem:** I like visual file managers, but I'm working on a server...
+
+</v-click>
+<v-click>
+
+* **💡Solution:**  Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger) (`pipx install ranger-fm`)
 
 <img src="/ranger.png" style="width: 50%; margin: auto;"/>
+</v-click>
 
-* ⁉️ Using `grep` a lot? 💡 There are faster and more feature-rich alternatives. Example: [ripgrep](https://github.com/BurntSushi/ripgrep), [`ag`](https://github.com/ggreer/the_silver_searcher), ...
-* ⁉️ `man` pages are wasting your time? 💡 Try [`tldr`](https://tldr.sh/) (`pipx install tldr`)
-* ⁉️ Typeahead searching with fuzzy matching for command line arguments? 💡 Try [`fzf`](https://github.com/junegunn/fzf) with [shell integration](https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh): `vim ../**`<kbd>Tab</kbd> starts `fzf`
+<v-click>
+
+* **⁉️ Problem**: I search through files a lot, but `grep` is slow/inconvenient...
+
+</v-click>
+<v-click>
+
+* **💡Solution:** There are faster and more feature-rich alternatives. Example: [ripgrep](https://github.com/BurntSushi/ripgrep), [`ag`](https://github.com/ggreer/the_silver_searcher), ...
+
+</v-click>
+
+<v-click>
+
+* **⁉️ Problem:**  Even with tab completion, completing file names is cumbersome.
+
+</v-click>
+<v-click>
+
+* **💡Solution:**  Try type-ahead-searching/fuzzy matching, e.g., with [`fzf`](https://github.com/junegunn/fzf) with [shell integration](https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh), e.g., `vim ../**`<kbd>Tab</kbd> starts searching with `fzf` in parent dir
+
+</v-click>
+
+---
+
+# More shell tools
+
+* **⁉️ Problem:** `man` pages are wasting your time?
+* **💡Solution:**   Try [`tldr`](https://tldr.sh/) (`pipx install tldr`). Compare:
+
+
+<div style="align: center">
+&nbsp;
+<figure class="half" style="display:flex">
+<img src="/man.png" style="width:  35%"/>
+<img src="/tldr.png" style="width:  35%"/>
+</figure>
+</div>
 
 ---
 
@@ -349,7 +391,7 @@ j codas  # <-- get back to codas-hep folder
 * **💡Solutions:** You have several options
   1. Always strip output from notebooks before committing (easy but half-hearted)
   2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
-  3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs)
+  3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs). Example: [`nbdime`](https://nbdime.readthedocs.io/en/latest/)
   4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
 
 </v-click>
@@ -508,6 +550,7 @@ def tests(session: nox.Session) -> None:
     session.install(".[test]")
     session.run("pytest", *session.posargs)
 ```
+
 
 
 ---
