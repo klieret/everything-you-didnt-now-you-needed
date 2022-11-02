@@ -659,9 +659,7 @@ def build(session, autobuild=False):
 
 ---
 
-# pytest tricks (config)
-
-Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
+# pytest: Make testing fun
 
 ## Basics
 
@@ -675,7 +673,11 @@ def test_funct():
 To run: `pip install pytest` and then `pytest` to discover & run them all.
 
 
+<v-click>
+
 ## First tip: your `project.toml` file
+
+Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
 
 ```toml
 [tool.pytest.ini_options]
@@ -687,6 +689,8 @@ filterwarnings = ["error"]
 log_cli_level = "info"
 testpaths = ["tests"]  # search for tests in "test" directory
 ```
+
+</v-click>
 
 ---
 
@@ -713,6 +717,8 @@ def test_approx():
 
 This works natively on arrays, as well!
 
+<v-click>
+
 ### Test for errors
 
 ```python
@@ -720,6 +726,9 @@ def test_raises():
     with pytest.raises(ZeroDivisionError):
         1 / 0
 ```
+
+</v-click>
+<v-click>
 
 ### Marks
 
@@ -731,7 +740,11 @@ def test_only_on_37plus():
     assert f"{x = }" == "x = 3"
 ```
 
+</v-click>
+
 ::right::
+
+<v-click>
 
 ### Fixtures allow reuse, setup, etc
 
@@ -749,9 +762,14 @@ def test_thing(platform_system: str):
     assert platform in {"Linux", "Darwin", "Windows"}
 ```
 
+</v-click>
+<v-click>
+
 ### Monkeypatching
 
 System IO, GUIs, hardware, slow processes; there are a lot of things that are hard to test! Use monkeypatching to keep your tests fast and "unit".
+
+</v-click>
 
 ---
 
