@@ -21,8 +21,8 @@ A PDF version of the slides is available in the corresponding release.
 * cookiecutter
 * SSH config
 * SSH escape sequences
-* Autojump
-* Command line kung-fu
+* Command line kung-fu: `!$`, `fc`, autojump, `tldr`, explainshell.com, `grep` replacements, `fzf`, ...
+* Terminal file managers
 * Tracking Jupyter notebooks with git
 * Lockfiles and locking package managers
 * Task runners
