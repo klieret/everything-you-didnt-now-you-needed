@@ -245,7 +245,7 @@ Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or n
 </v-click>
 
 <v-click>
-* **Caveat**: <kbd>C</dbd> option not available to multiplexed sessions.
+* **Caveat**: <kbd>C</kbd> option not available to multiplexed sessions.
 </v-click>
 
 ---
