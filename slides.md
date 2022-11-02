@@ -118,54 +118,6 @@ See https://scikit-hep.org/developer/style for many more, updated weekly!
 layout: two-cols
 ---
 
-# Hot code reloading
-
-* **⁉️ Problem:**
-  1. I have some code in a notebook and some code in a python file/library.
-  2. I update my python file/library.
-  3. Do I have to restart the kernel and rerun to see the changes?
-
-<v-click>
-
-* **💡Solution:** No! Python supports a number of ways to "reload" imported code.
-* **Easiest example**: Add the following to your Jupyter notebook<sup>1</sup> to reload all (!) modules every time you execute code
-
-```python
-%load_ext autoreload
-%autoreload 2  # reload everything
-```
-
-
-<Footnotes separator>
-  <Footnote :number=1>or any IPython system</Footnote>
-</Footnotes>
-
-</v-click>
-
-::right::
-
-<v-click>
-
-* **More granular**:
-
-```python
-%load_ext autoreload
-%autoreload 1  # <-- reload only some modules
-
-# Mark for reloading
-%aimport foo
-```
-
-* **Warning:** These tricks don't *always* work, but it should save you from a lot of restarts
-* **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
-* **More information**: See the [autoreload documentation](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html)
-
-</v-click>
-
----
-layout: two-cols
----
-
 # Cookiecutter
 
 
@@ -393,6 +345,54 @@ j codas  # <-- get back to codas-hep folder
   2. Synchronize Jupyter notebooks and python files; only track python files (slightly more advanced but best option IMO)
   3. Do not change how you *track* Jupyter notebooks; change how you *compare* them (use if you *really* want to track outputs). Example: [`nbdime`](https://nbdime.readthedocs.io/en/latest/)
   4. Avoid large amounts of code in notebooks so that the issue is less important; create python packages and use hot code reloading instead
+
+</v-click>
+
+---
+layout: two-cols
+---
+
+# Hot code reloading
+
+* **⁉️ Problem:**
+  1. I have some code in a notebook and some code in a python file/library.
+  2. I update my python file/library.
+  3. Do I have to restart the kernel and rerun to see the changes?
+
+<v-click>
+
+* **💡Solution:** No! Python supports a number of ways to "reload" imported code.
+* **Easiest example**: Add the following to your Jupyter notebook<sup>1</sup> to reload all (!) modules every time you execute code
+
+```python
+%load_ext autoreload
+%autoreload 2  # reload everything
+```
+
+
+<Footnotes separator>
+  <Footnote :number=1>or any IPython system</Footnote>
+</Footnotes>
+
+</v-click>
+
+::right::
+
+<v-click>
+
+* **More granular**:
+
+```python
+%load_ext autoreload
+%autoreload 1  # <-- reload only some modules
+
+# Mark for reloading
+%aimport foo
+```
+
+* **Warning:** These tricks don't *always* work, but it should save you from a lot of restarts
+* **Try it out!** Follow our instructions [here](https://github.com/klieret/everything-you-didnt-now-you-needed/tree/main/examples/hot_code_reloading).
+* **More information**: See the [autoreload documentation](https://ipython.readthedocs.io/en/stable/config/extensions/autoreload.html)
 
 </v-click>
 
