@@ -238,14 +238,13 @@ Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or n
 <v-click>
 
 * **💡Solution:** SSH Escape Sequences:
+
   * Hit <kbd>Enter</kbd> <kbd>~</kbd> <kbd>C</kbd>  (now you should see a `ssh>` prompt)
   * Add `-L 8000:localhost:8000` <kbd>Enter</kbd> to forward port 8000
   * More escape sequences available! [More information.](https://www.microfocus.com/documentation/rsit-server-client-unix/8-4-0/unix-guide/ssh_escape_ap.html)
 
-</v-click>
+* **Caveat**: <kbd>C</kbd> option not available in multiplexed sessions.
 
-<v-click>
-* **Caveat**: <kbd>C</kbd> option not available to multiplexed sessions.
 </v-click>
 
 ---
