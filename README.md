@@ -25,7 +25,8 @@ A PDF version of the slides is available in the corresponding release.
 * SSH escape sequences
 * Command line kung-fu: `!$`, `fc`, autojump, `tldr`, explainshell.com, `grep` replacements, `fzf`, ...
 * Terminal file managers
-* Tracking Jupyter notebooks with git
+* Best practices for tracking Jupyter notebooks with git
+* `nbqa` to apply static code quality tools to Jupyter notebooks
 * Lockfiles and locking package managers
 * Task runners (`nox`)
 * PyTest tricks
