@@ -13,8 +13,8 @@
 > **Note**
 > 👉 [**Click here for rendered slides!**](https://klieret.github.io/everything-you-didnt-now-you-needed/) 👈
 
-Did you every wonder about all the small productivity hacks that others use? 
-Then you've come to the right place! 
+Did you every wonder about all the small productivity hacks that others use?
+Then you've come to the right place!
 These slides are a mixed bag of everything related to productivity with python, the command line, and more.
 
 Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
