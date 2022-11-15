@@ -315,7 +315,7 @@ j codas  # <-- get back to codas-hep folder
 </v-click>
 <v-click>
 
-* **💡Solution:**  Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger) (`pipx install ranger-fm`)
+* **💡Solution:**  Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger)
 
 <img src="/ranger.png" style="width: 50%; margin: auto;"/>
 </v-click>
