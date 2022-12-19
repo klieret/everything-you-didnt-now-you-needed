@@ -346,7 +346,7 @@ j codas  # <-- get back to codas-hep folder
 layout: center
 ---
 
-# Python
+# Python + Jupyter
 
 ---
 layout: two-cols
@@ -472,6 +472,21 @@ Rewriting my_notebook.ipynb
 ```
 
 </v-click>
+
+---
+
+# Various tricks with Jupyter
+
+* **⁉️ Problem:** I want to preview/run Jupyter notebooks in my terminal.
+* **💡Solution:**
+  * `pipx run nbpreview` if you're only interested in prevewing
+  * `pipx run nbterm` for interactively executing notebooks in the terminal
+
+---
+layout: center
+---
+
+# Python
 
 ---
 
