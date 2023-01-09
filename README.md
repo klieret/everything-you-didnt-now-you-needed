@@ -54,6 +54,10 @@ Please also clone [this repository](https://github.com/klieret/python-pre-commit
 * [Scikit-HEP developer guide](https://scikit-hep.org/developer): A very complete set of tips on how to set up your python package for success
 * [Levelling up your python](https://henryiii.github.io/level-up-your-python/notebooks/0%20Intro.html): Various bits of intermediate and advanced python
 
+Less related training material built with the same markdown-based framework:
+
+* [Collaborative Programming with GitHub](https://github.com/klieret/collaborative-programming-github)
+
 ## 🧰 Local development
 
 The slides are built with [Slidev](https://github.com/slidevjs/slidev).
