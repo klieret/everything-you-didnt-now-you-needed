@@ -219,6 +219,8 @@ Now you can use `ssh tiger` or `ssh tiger-t` depending on whether to tunnel or n
 
 * 💡 You can quickly search through your terminal history with <kbd>Ctrl</kbd> <kbd>R</kbd> - start typing
    * Hit <kbd>Ctrl</kbd> <kbd>R</kbd> to navigate between different hits
+   * 🔥 Install [fzf](https://github.com/junegunn/fzf) as a plugin to your shell
+     to get an interactive fuzzy finding pop-up instead (interactively filter through list of results rather than just seeing one)
 
 </v-click>
 <v-click>
