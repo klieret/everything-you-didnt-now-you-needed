@@ -25,24 +25,29 @@ A PDF version of the slides is available in the corresponding release.
 
 ## ✔️ Content
 
-* pre-commit
-* Hot code reloading in python
-* cookiecutter
-* SSH config
-* SSH escape sequences
-* Command line kung-fu: `!$`, `fc`, autojump, `tldr`, explainshell.com, `grep` replacements, `fzf`, ...
-* Terminal file managers
-* Best practices for tracking Jupyter notebooks with git
-* `nbqa` to apply static code quality tools to Jupyter notebooks
-* Lockfiles and locking package managers
-* Task runners (`nox`)
-* PyTest tricks
-* ACT for GitHub Actions
-* Type checking in python
-* Textualize
-* WebAssembly
-* Packaging
-* Binary packaging
+* Command line and more:
+    * !$`, `fc`, autojump, ...
+    * `tldr`, explainshell.com,
+    * `grep` replacements, `fzf`, ...
+    * Terminal file managers
+    * SSH config
+    * SSH escape sequences
+* Python:
+    * Hot code reloading in python
+    * Task runners (`nox`)
+    * PyTest tricks
+    * Best practices for tracking Jupyter notebooks with git
+    * `nbqa` to apply static code quality tools to Jupyter notebooks
+    * Textualize
+    * WebAssembly
+    * Packaging
+    * Type checking in python
+* Software engineering:
+    * pre-commit
+    * cookiecutter
+    * Binary packaging
+    * ACT for GitHub Actions
+    * Lockfiles and locking package managers
 
 ## 🔧 Note for participants
 
