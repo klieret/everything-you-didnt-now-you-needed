@@ -89,7 +89,7 @@ ci:
     autoupdate_schedule: monthly # default is weekly
 ```
 
-See [Scientific Python Development Guidelines](https://scientific-python.org/development/guides/style) for many more, updated weekly!
+See [Scientific Python Development Guidelines](https://learn.scientific-python.org/development/guides/style) for many more, updated weekly!
 
 ---
 
@@ -1081,7 +1081,7 @@ A distribution of CPython 3.11 including ~100 binary packages like SciPy, Pandas
 
 Examples:
 
-* https://learn.scientific-python.org/developer/guides/repo-review
+* https://learn.scientific-python.org/development/guides/repo-review
 
 </v-click>
 
@@ -1104,16 +1104,18 @@ An Python interface for Pyodide in HTML.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hello, World!</title>
-  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
-  <py-script>print("Hello, World!")</py-script>
+  <script type="py-script">
+    print("Hello, World!")
+  </script>
 </body>
 </html>
 ```
 
-https://realpython.com/pyscript-python-in-browser
+https://docs.pyscript.net/latest/tutorials/getting-started.html
 
 ---
 
@@ -1249,8 +1251,15 @@ jobs:
         path: ./wheelhouse/*.whl
 ```
 
-### CMake example
+---
+layout: two-cols
+---
 
+## CMake example
+
+You can make a working example with just three files!
+
+### CMakeLists.txt
 
 ```cmake
 cmake_minimum_required(VERSION 3.15...3.26)
@@ -1263,12 +1272,30 @@ pybind11_add_module(_core MODULE src/main.cpp)
 install(TARGETS _core DESTINATION ${SKBUILD_PROJECT_NAME})
 ```
 
+::right::
+
+### pyproject.toml
+
 ```toml
 [build-system]
-requires = ["scikit-build-core"]
+requires = ["scikit-build-core", "pybind11"]
 build-backend = "scikit_build_core.build"
 
 [project]
 name = "package"
 version = "0.1.0"
+```
+
+### src/main.cpp
+
+```cpp
+#include <pybind11/pybind11.h>
+
+int add(int i, int j) { return i + j; }
+
+namespace py = pybind11;
+
+PYBIND11_MODULE(_core, m) {
+  m.def("add", &add);
+}
 ```
