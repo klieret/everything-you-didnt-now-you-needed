@@ -70,7 +70,7 @@ A config that will always be useful. Optional pre-commit.ci CI service.
 ```yaml
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: 'v4.3.0'
+  rev: '4.4.0'
   hooks:
   - id: check-added-large-files
   - id: check-case-conflict
@@ -80,7 +80,7 @@ repos:
   - id: trailing-whitespace
 
 - repo: https://github.com/codespell-project/codespell  # the spell checker with ~0 false positives
-  rev: 'v2.1.0'
+  rev: 'v2.2.5'
   hooks:
   - id: codespell
     # args: ["-I", "codespell.txt"]  # Optional to add exceptions
@@ -424,7 +424,7 @@ layout: two-cols
 
 ```yaml
 - repo: https://github.com/kynan/nbstripout
-  rev: 0.5.0
+  rev: 0.6.1
   hooks:
   - id: nbstripout
 ```
@@ -890,7 +890,7 @@ if typing.TYPE_CHECKING:
 
 ```yaml
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: "v0.971"
+  rev: "v1.4.1"
   hooks:
     - id: mypy
       files: src
@@ -944,12 +944,12 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v1
+        uses: actions/configure-pages@v3
 
       # Static site generation, latex, etc. here
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
         with:
           path: dist/
 
@@ -963,7 +963,7 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
 ```
 
 ---
@@ -1241,10 +1241,10 @@ jobs:
         - macos-11
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Build wheels
-      uses: pypa/cibuildwheel@v2.8.1
+      uses: pypa/cibuildwheel@v2.14
 
     - uses: actions/upload-artifact@v3
       with:
