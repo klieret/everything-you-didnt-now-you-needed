@@ -89,33 +89,29 @@ ci:
     autoupdate_schedule: monthly # default is weekly
 ```
 
-See https://scikit-hep.org/developer/style for many more, updated weekly!
+See [Scientific Python Development Guidelines](https://learn.scientific-python.org/development/guides/style) for many more, updated weekly!
 
 ---
 
 # Pre-commit hooks for python!
 
 ```yaml
--   repo: https://github.com/psf/black  # Reformat code without compromises!
-    rev: '22.6.0'
+    # Reformat code without compromises!
+-   repo: https://github.com/psf/black
+    rev: '23.7.0'
     hooks:
     -   id: black
-    # or, if you also work with Jupyter notebooks
-    # -   id: black-jupyter
--   repo: https://github.com/PyCQA/flake8  # Simple static checks
-    rev: '5.0.1'
+    # Static checks
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.0.278'
     hooks:
-    -   id: flake8
-        additional_dependencies: ['flake8-bugbear']
--   repo: https://github.com/pre-commit/mirrors-mypy  # Check typing (slightly more advanced)
-    rev: 'v0.971'
+    -   id: ruff
+        args: [--fix, --show-fixes]
+    # Check typing (slightly more advanced)
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.4.1'
     hooks:
     -   id: mypy
--   repo: https://github.com/asottile/pyupgrade  # Automatically upgrade old Python syntax
-    rev: 'v2.37.2'
-    hooks:
-    -   id: pyupgrade
-        args: [--py37-plus]
 ```
 
 * **Try it out**: Go [here](https://github.com/klieret/python-pre-commit-demo-tutorial) for a quick step-by-step tutorial
@@ -141,19 +137,18 @@ layout: two-cols
 <v-click>
 
 * **Examples**:
-  * [scikit-hep project template](https://github.com/scikit-hep/cookie/): All the features, all the best-practices
-  * [my personal python template](https://github.com/scikit-hep/cookie/): Fewer options, easier to read (I think ;))
+  * [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
 * **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
+* **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is a powerful tool the above template also supports which also supports updates.
 
 * **Trying it out**:
 
 ```bash
 pipx install cookiecutter
-# alternative: cruft https://...
-cookiecutter https://github.com/scikit-hep/cookie/
-# e.g., select project type = setuptools
-# for the "traditional" way to set up your python
-# package
+# alternative: cruft or copier
+cookiecutter gh:scientific-python/cookie
+# e.g., select project type = hatchling
+# for a very simple start that grows with you.
 ```
 
 </v-click>
@@ -168,7 +163,7 @@ layout: center
 
 # SSH Config
 
-* **⁉️ Problem:** Typing long servernames and potentially tunnelling can be tiresome
+* **⁉️ Problem:** Typing long server names and potentially tunnelling can be tiresome
 
 <v-click>
 
@@ -452,25 +447,29 @@ git commit ... && git push ...
 
 ---
 
-# Satic code checkers and Jupyter notebooks
+# Static code checkers and Jupyter notebooks
 
-* **⁉️ Problem:** I still have lots of code in my notebooks. I still want to apply tools like black, pyupgrade, ... on the notebooks.
+* **⁉️ Problem:** I still have lots of code in my notebooks. I still want to apply tools on notebooks.
 
 <v-click>
 
-* **💡Solution:** [`nbqa`](https://github.com/nbQA-dev/nbQA) allows to apply a lot of tools to Jupyter notebooks
+* **💡Solution:**: Black and Ruff support jupyter notebooks natively!
 
-```bash
-$ pip install nbqa
+* **💡 Pro-tip**: [`nbqa`](https://github.com/nbQA-dev/nbQA) allows other tools to be applied, as well.
 
-$ nbqa black my_notebook.ipynb
-reformatted my_notebook.ipynb
-All done! ✨ 🍰 ✨
-1 files reformatted.
-
-
-$ nbqa pyupgrade my_notebook.ipynb --py37-plus
-Rewriting my_notebook.ipynb
+```yaml
+    # Reformat code without compromises!
+-   repo: https://github.com/psf/black
+    rev: '23.7.0'
+    hooks:
+    -   id: black-jupyter
+    # Static checks
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.0.278'
+    hooks:
+    -   id: ruff
+        types_or: [python, pyi, jupyter]
+        args: [--fix, --show-fixes]
 ```
 
 </v-click>
@@ -481,7 +480,8 @@ Rewriting my_notebook.ipynb
 
 * **⁉️ Problem:** I want to preview/run Jupyter notebooks in my terminal.
 * **💡Solution:**
-  * `pipx run nbpreview` if you're only interested in prevewing
+  * `pipx run nbpreview` if you're only interested in previewing
+  * `pipx run rich-cli` also works
   * `pipx run nbterm` for interactively executing notebooks in the terminal
 
 ---
@@ -719,7 +719,7 @@ testpaths = ["tests"]  # search for tests in "test" directory
 
 &nbsp;
 
-Reminder: https://scikit-hep.org/developer/pytest is a great place to look for tips!
+Reminder: https://learn.scientific-python.org/development/guides/pytest is a great place to look for tips!
 
 ---
 layout: two-cols
@@ -1069,7 +1069,7 @@ layout: two-cols
 
 <v-click>
 
-* **💡Solution:** Use the browser to _run_ the code with a WebAssembly distribution, like Pyodide. Python 3.11 officially supports it now too! Binaries may be provided around 3.12!
+* **💡Solution:** Use the browser to _run_ the code with a WebAssembly distribution, like Pyodide. Python 3.11 officially supports it now too!
 
 </v-click>
 
@@ -1077,12 +1077,11 @@ layout: two-cols
 
 ## Pyodide
 
-A distribution of CPython 3.10 including ~100 binary packages like SciPy, Pandas, boost-histogram (Hist), etc.
+A distribution of CPython 3.11 including ~100 binary packages like SciPy, Pandas, boost-histogram (Hist), etc.
 
 Examples:
 
-* https://henryiii.github.io/level-up-your-python/live/lab/index.html
-* https://scikit-hep.org/developer/reporeview
+* https://learn.scientific-python.org/development/guides/repo-review
 
 </v-click>
 
@@ -1105,16 +1104,18 @@ An Python interface for Pyodide in HTML.
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hello, World!</title>
-  <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+  <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
-  <py-script>print("Hello, World!")</py-script>
+  <script type="py-script">
+    print("Hello, World!")
+  </script>
 </body>
 </html>
 ```
 
-https://realpython.com/pyscript-python-in-browser
+https://docs.pyscript.net/latest/tutorials/getting-started.html
 
 ---
 
@@ -1139,10 +1140,10 @@ version = "0.0.1"
 
 Other metadata should go there too, but that's the minimum. See links:
 
-* https://scikit-hep.org/developer/pep621
+* https://learn.scientific-python.org/development/guides/packaging-simple/
 * https://packaging.python.org/en/latest/tutorials/packaging-projects
 
-`scikit-hep/cookie` supports 11 backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
+`scientific-python/copier` supports 12 backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
 
 </v-click>
 
@@ -1155,7 +1156,7 @@ Other metadata should go there too, but that's the minimum. See links:
 
 <v-click>
 
-* **💡Solution:** Some parts are easy, and I'm working on making the other parts easy too!
+* **💡Solution:** I've been working on making it easy!
 
 </v-click>
 
@@ -1185,9 +1186,7 @@ layout: two-cols
 
 ## Configuring the build
 
-I'm working on scikit-build for the next three years! CMake for Python packaging.
-
-Currently based on distutils & setuptools - but will be rewritten!
+I'm funded to work on scikit-build for three years! CMake for Python packaging.
 
 
 ::right::
@@ -1195,6 +1194,7 @@ Currently based on distutils & setuptools - but will be rewritten!
 Org of several packages:
 
 * Scikit-build
+* Scikit-build-core
 * CMake for Python
 * Ninja for Python
 * moderncmakedomain
@@ -1249,4 +1249,53 @@ jobs:
     - uses: actions/upload-artifact@v3
       with:
         path: ./wheelhouse/*.whl
+```
+
+---
+layout: two-cols
+---
+
+## CMake example
+
+You can make a working example with just three files!
+
+### CMakeLists.txt
+
+```cmake
+cmake_minimum_required(VERSION 3.15...3.26)
+project(${SKBUILD_PROJECT_NAME} LANGUAGES CXX)
+
+set(PYBIND11_FINDPYTHON ON)
+find_package(pybind11 CONFIG REQUIRED)
+
+pybind11_add_module(_core MODULE src/main.cpp)
+install(TARGETS _core DESTINATION ${SKBUILD_PROJECT_NAME})
+```
+
+::right::
+
+### pyproject.toml
+
+```toml
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "package"
+version = "0.1.0"
+```
+
+### src/main.cpp
+
+```cpp
+#include <pybind11/pybind11.h>
+
+int add(int i, int j) { return i + j; }
+
+namespace py = pybind11;
+
+PYBIND11_MODULE(_core, m) {
+  m.def("add", &add);
+}
 ```
