@@ -137,7 +137,7 @@ layout: two-cols
 <v-click>
 
 * **Examples**:
-  * [Scientific Python Cookiee](https://github.com/scientific-python/cookie): All the features, all the best-practices
+  * [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
 * **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
 * **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is a powerful tool the above template also supports which also supports updates.
 
