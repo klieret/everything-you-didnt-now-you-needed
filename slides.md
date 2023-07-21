@@ -859,11 +859,9 @@ def g(x: str | int) -> None:
 
 But Python is duck-typed! Nooooooo!
 
-<v-click>
-
 Duck typing can be formalized by a Protocol:
 
-```python {all|3-5|7-8|10-12|14-15}
+```python
 from typing import Protocol  # or typing_extensions for < 3.8
 
 class Duck(Protocol):
@@ -881,8 +879,6 @@ class MyDuck:
 if typing.TYPE_CHECKING:
     _: Duck = typing.cast(MyDuck, None)
 ```
-
-</v-click>
 
 ---
 
