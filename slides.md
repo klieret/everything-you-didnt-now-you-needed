@@ -17,7 +17,7 @@ Kilian Lieret and Henry Schreiner
 
 Princeton University
 
-CoDaS-HEP school 2022
+CoDaS-HEP school 2023
 
 Slides available as [<mdi-github/> open source](https://github.com/klieret/everything-you-didnt-now-you-needed), contributions welcome.
 

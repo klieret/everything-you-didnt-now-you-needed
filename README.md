@@ -17,7 +17,11 @@ Did you every wonder about all the small productivity hacks that others use?
 Then you've come to the right place!
 These slides are a mixed bag of everything related to productivity with python, the command line, and more.
 
-Slides originally created for the [CoDaS-HEP 2022 school](https://indico.cern.ch/event/1151367/).
+Slides taught at:
+
+* [CoDaS-HEP 2023 school (Princeton)](https://indico.cern.ch/event/1287965/)
+* [CoDaS-HEP 2022 school (Princeton)](https://indico.cern.ch/event/1151367/)
+
 A PDF version of the slides is available in the corresponding release.
 
 <a href="https://klieret.github.io/everything-you-didnt-now-you-needed/"><img width="450" alt="Screenshot of slides" src="https://user-images.githubusercontent.com/13602468/201179879-741020d5-b526-4829-b0ca-a416136098f4.png"></a>
