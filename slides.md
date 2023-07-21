@@ -730,8 +730,8 @@ def test_raises():
 
 
 ```python
-@pytest.mark.skipif("sys.version_info >= (3, 7)")
-def test_only_on_37plus():
+@pytest.mark.skipif(sys.version_info < (3, 8), reason="Requires Python 3.8+")
+def test_only_on_38plus():
     x = 3
     assert f"{x = }" == "x = 3"
 ```
