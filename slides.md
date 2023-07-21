@@ -620,7 +620,7 @@ def update_python_dependencies(session):
 Example 2: `python.packaging.org`
 
 ```python
-@nox.session(py="3")
+@nox.session
 def preview(session):
     session.install("sphinx-autobuild")
     build(session, autobuild=True)
@@ -871,7 +871,7 @@ if typing.TYPE_CHECKING:
     - id: mypy
       files: src
       args: []
-      additional_dependencies: [numpy==1.22.1]
+      additional_dependencies: [numpy]
 ```
 
 * Args should be empty, or have things you add (pre-commit's default is poor)
@@ -968,7 +968,7 @@ If you use a task runner, like nox, you should be able to avoid this most of the
 
 # Python libraries: Rich, Textual, Rich-cli
 
-Textualize is one of the fastest growing library families. Recently Rich was even vendored into Pip!
+Textualize is one of the fastest growing library families. Rich was even vendored into Pip!
 
 <v-click>
 
@@ -1017,8 +1017,6 @@ Rich is not just a "color terminal" library.
 ---
 
 ## Textual: GUI? No, TUI!
-
-New "CSS" version coming soon!
 
 ![](https://github.com/Textualize/textual/raw/main/imgs/textual.png)
 
@@ -1119,7 +1117,7 @@ Other metadata should go there too, but that's the minimum. See links:
 * https://learn.scientific-python.org/development/guides/packaging-simple/
 * https://packaging.python.org/en/latest/tutorials/packaging-projects
 
-`scientific-python/copier` supports 12 backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
+`scientific-python/copier` supports 10+ backends; hatching is recommended for pure Python. For compiled extensions: See next slides(s). 😀
 
 </v-click>
 
@@ -1185,10 +1183,10 @@ layout: two-cols
 Redistributable wheel builder.
 
 * Targeting macOS 10.9+
-* Apple Silicon cross-compiling 3.8+
+* Apple Silicon cross-compiling for 3.8+
 * All variants of manylinux (including emulation)
 * musllinux
-* PyPy 3.7-3.9
+* PyPy 3.7-3.10
 * Repairing and testing wheels
 * Reproducible pinned defaults (can unpin)
 
@@ -1212,9 +1210,9 @@ jobs:
     strategy:
       matrix:
         os:
-        - ubuntu-22.04
-        - windows-2022
-        - macos-11
+        - ubuntu-latest
+        - windows-latest
+        - macos-latest
 
     steps:
     - uses: actions/checkout@v3
