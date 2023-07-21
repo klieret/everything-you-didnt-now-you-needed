@@ -839,7 +839,7 @@ But Python is duck-typed! Nooooooo!
 
 Duck typing can be formalized by a Protocol:
 
-```python {all|3-5|7-8|10-12|14-15}
+```python {all|3-5|7-8|10-12|14-16}
 from typing import Protocol  # or typing_extensions for < 3.8
 
 class Duck(Protocol):
