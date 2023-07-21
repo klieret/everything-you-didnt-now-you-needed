@@ -20,6 +20,7 @@ These slides are a mixed bag of everything related to productivity with python, 
 Slides taught at:
 
 * [CoDaS-HEP 2023 school (Princeton)](https://indico.cern.ch/event/1287965/)
+* [Princeton, Nov 2 2022](https://gradfutures.princeton.edu/events/2022/everything-you-didnt-know-you-needed-research-computing-tips-tricks)
 * [CoDaS-HEP 2022 school (Princeton)](https://indico.cern.ch/event/1151367/)
 
 A PDF version of the slides is available in the corresponding release.
