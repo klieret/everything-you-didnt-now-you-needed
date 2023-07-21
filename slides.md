@@ -123,7 +123,7 @@ layout: two-cols
 # Cookiecutter
 
 
-* **⁉️ Problem:** Setting up e.g., a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
+* **⁉️ Problem:** Setting up a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
 
 <v-click>
 
@@ -136,10 +136,9 @@ layout: two-cols
 
 <v-click>
 
-* **Examples**:
-  * [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
+* **Example**: [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
 * **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
-* **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is a powerful tool the above template also supports which also supports updates.
+* **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is another powerful tool that supports updates (and works with the template above).
 
 * **Trying it out**:
 
@@ -251,6 +250,9 @@ this-is-part-of-a-filename
 # How to shell...
 
 * **⁉️ Problem:** `man` pages are wasting your time?
+
+<v-click>
+
 * **💡Solution:**   Try [`tldr`](https://tldr.sh/) (`pipx install tldr`). Compare:
 
 
@@ -261,6 +263,8 @@ this-is-part-of-a-filename
 <img src="/tldr.png" style="width:  35%"/>
 </figure>
 </div>
+
+</v-click>
 
 ---
 
@@ -305,11 +309,8 @@ j codas  # <-- get back to codas-hep folder
 
 # File navigation and completion
 
-<v-click>
-
 * **⁉️ Problem:** I like visual file managers, but I'm working on a server...
 
-</v-click>
 <v-click>
 
 * **💡Solution:**  Use a terminal file manager, e.g., [`ranger`](https://github.com/ranger/ranger)
