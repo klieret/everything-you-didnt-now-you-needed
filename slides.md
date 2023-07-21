@@ -736,8 +736,6 @@ def test_approx():
 
 This works natively on arrays, as well!
 
-<v-click>
-
 ### Test for errors
 
 ```python
@@ -745,9 +743,6 @@ def test_raises():
     with pytest.raises(ZeroDivisionError):
         1 / 0
 ```
-
-</v-click>
-<v-click>
 
 ### Marks
 
@@ -759,7 +754,6 @@ def test_only_on_37plus():
     assert f"{x = }" == "x = 3"
 ```
 
-</v-click>
 
 ::right::
 
