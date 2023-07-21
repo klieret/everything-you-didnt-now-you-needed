@@ -575,30 +575,11 @@ Read up on how to use the environment that this makes to run your app.
 
 <v-click>
 
-* **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
-* Nox is nice because it uses Python for configuration, and prints what it is doing.
+* **💡Solution:**
+  * A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
+  * Nox is nice because it uses Python for configuration, and prints what it is doing.
 
-
-```python
-import nox
-
-@nox.session
-def tests(session):
-    session.install(".[test]")
-    session.run("pytest")
-```
-
-</v-click>
-
----
-
-# Task runners
-
-* **⁉️ Problem:** There are lots of way to setup environments, lots of ways to run things.
-
-
-* **💡Solution:** A task runner (nox, tox, hatch) can create a reproducible environment with no setup.
-* Nox is nice because it uses Python for configuration, and prints what it is doing.
+&nbsp;
 
 ```python
 import nox
@@ -612,7 +593,7 @@ def tests(session: nox.Session) -> None:
     session.run("pytest", *session.posargs)
 ```
 
-
+</v-click>
 
 ---
 layout: two-cols
