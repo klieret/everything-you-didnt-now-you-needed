@@ -1089,7 +1089,7 @@ An Python interface for Pyodide in HTML.
 </html>
 ```
 
-https://docs.pyscript.net/latest/tutorials/getting-started.html
+https://docs.pyscript.net/2023.09.1.RC2/beginning-pyscript/
 
 ---
 
