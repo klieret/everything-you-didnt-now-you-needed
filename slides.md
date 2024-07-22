@@ -431,7 +431,7 @@ layout: two-cols
 
 ```bash
 pipx install jupytext
-echo "*.ipynb" >> ~/.gitignore  # <-- tell git to ignore noteboks
+echo "*.ipynb" >> ~/.gitignore  # <-- tell git to ignore notebooks
 jupytext --to py mynotebook.ipynb
 # Now you have mynotebook.py
 git commit mynotebook.py -m "..."
