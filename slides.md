@@ -25,137 +25,6 @@ Slides available as [<mdi-github/> open source](https://github.com/klieret/every
 layout: center
 ---
 
-# Git & starting new projects
-
----
-layout: two-cols
----
-
-# Pre-commit hooks 🪝
-Run small checks *before* you commit
-
-
-* **⁉️ Problem:** How can I stop myself from committing low-quality code?
-
-<v-click>
-
-* **💡Solution:**
-  * *git hooks* allow you to run scripts that are triggered by certain actions
-  * a pre-commit hook is triggered every time you run `git commit`
-    * in principle you can set them up yourself by placing scripts into `.git/hooks`
-
-</v-click>
-
-::right::
-
-<v-click>
-
-* **🧰 Making it practical:**
-  * The [pre-commit framework](https://pre-commit.com/) is a python package that makes configuring pre-commit hooks easy!
-  * All hooks are configured with a single `.pre-commit-config.yaml` file
-  * Few-clicks GitHub integration available: [pre-commit.ci](https://pre-commit.ci/)
-* **🏗️ Setting it up:**
-  1. `pipx install pre-commit`
-  2. `cd <your repo>`
-  3. `touch .pre-commit-config.yaml`
-  3. `pre-commit install`
-  4. Profit 🎉
-
-</v-click>
----
-
-# Pre-commit hooks 🪝
-A config that will always be useful. Optional pre-commit.ci CI service.
-
-```yaml
-repos:
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: '4.4.0'
-  hooks:
-  - id: check-added-large-files
-  - id: check-case-conflict
-  - id: check-merge-conflict
-  - id: detect-private-key
-  - id: end-of-file-fixer
-  - id: trailing-whitespace
-
-- repo: https://github.com/codespell-project/codespell  # the spell checker with ~0 false positives
-  rev: 'v2.2.5'
-  hooks:
-  - id: codespell
-    # args: ["-I", "codespell.txt"]  # Optional to add exceptions
-
-ci:
-    autoupdate_schedule: monthly # default is weekly
-```
-
-See [Scientific Python Development Guidelines](https://learn.scientific-python.org/development/guides/style) for many more, updated weekly!
-
----
-
-# Pre-commit hooks for python!
-
-```yaml
-    # Reformat code without compromises!
--   repo: https://github.com/psf/black
-    rev: '23.7.0'
-    hooks:
-    -   id: black
-    # Static checks
--   repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 'v0.0.278'
-    hooks:
-    -   id: ruff
-        args: [--fix, --show-fixes]
-    # Check typing (slightly more advanced)
--   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: 'v1.4.1'
-    hooks:
-    -   id: mypy
-```
-
-* **Try it out**: Go [here](https://github.com/klieret/python-pre-commit-demo-tutorial) for a quick step-by-step tutorial
-
----
-layout: two-cols
----
-
-# Cookiecutter
-
-
-* **⁉️ Problem:** Setting up a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
-
-<v-click>
-
-* **💡Solution:** Creating templates
-* **🧰 Making it practical:** [cookiecutter](https://pypi.org/project/cookiecutter/) is a command line utility for project templates
-
-</v-click>
-
-::right::
-
-<v-click>
-
-* **Example**: [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
-* **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
-* **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is another powerful tool that supports updates (and works with the template above).
-
-* **Trying it out**:
-
-```bash
-pipx install cookiecutter
-# alternative: cruft or copier
-cookiecutter gh:scientific-python/cookie
-# e.g., select project type = hatchling
-# for a very simple start that grows with you.
-```
-
-</v-click>
-
----
-layout: center
----
-
 # SSH & Terminal Kung-fu
 
 ---
@@ -337,6 +206,137 @@ j codas  # <-- get back to codas-hep folder
 <v-click>
 
 * **💡Solution:**  Try type-ahead-searching/fuzzy matching, e.g., with [`fzf`](https://github.com/junegunn/fzf) with [shell integration](https://github.com/junegunn/fzf#fuzzy-completion-for-bash-and-zsh), e.g., `vim ../**`<kbd>Tab</kbd> starts searching with `fzf` in parent dir
+
+</v-click>
+
+---
+layout: center
+---
+
+# Git & starting new projects
+
+---
+layout: two-cols
+---
+
+# Pre-commit hooks 🪝
+Run small checks *before* you commit
+
+
+* **⁉️ Problem:** How can I stop myself from committing low-quality code?
+
+<v-click>
+
+* **💡Solution:**
+  * *git hooks* allow you to run scripts that are triggered by certain actions
+  * a pre-commit hook is triggered every time you run `git commit`
+    * in principle you can set them up yourself by placing scripts into `.git/hooks`
+
+</v-click>
+
+::right::
+
+<v-click>
+
+* **🧰 Making it practical:**
+  * The [pre-commit framework](https://pre-commit.com/) is a python package that makes configuring pre-commit hooks easy!
+  * All hooks are configured with a single `.pre-commit-config.yaml` file
+  * Few-clicks GitHub integration available: [pre-commit.ci](https://pre-commit.ci/)
+* **🏗️ Setting it up:**
+  1. `pipx install pre-commit`
+  2. `cd <your repo>`
+  3. `touch .pre-commit-config.yaml`
+  3. `pre-commit install`
+  4. Profit 🎉
+
+</v-click>
+---
+
+# Pre-commit hooks 🪝
+A config that will always be useful. Optional pre-commit.ci CI service.
+
+```yaml
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: '4.4.0'
+  hooks:
+  - id: check-added-large-files
+  - id: check-case-conflict
+  - id: check-merge-conflict
+  - id: detect-private-key
+  - id: end-of-file-fixer
+  - id: trailing-whitespace
+
+- repo: https://github.com/codespell-project/codespell  # the spell checker with ~0 false positives
+  rev: 'v2.2.5'
+  hooks:
+  - id: codespell
+    # args: ["-I", "codespell.txt"]  # Optional to add exceptions
+
+ci:
+    autoupdate_schedule: monthly # default is weekly
+```
+
+See [Scientific Python Development Guidelines](https://learn.scientific-python.org/development/guides/style) for many more, updated weekly!
+
+---
+
+# Pre-commit hooks for python!
+
+```yaml
+    # Reformat code without compromises!
+-   repo: https://github.com/psf/black
+    rev: '23.7.0'
+    hooks:
+    -   id: black
+    # Static checks
+-   repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 'v0.0.278'
+    hooks:
+    -   id: ruff
+        args: [--fix, --show-fixes]
+    # Check typing (slightly more advanced)
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.4.1'
+    hooks:
+    -   id: mypy
+```
+
+* **Try it out**: Go [here](https://github.com/klieret/python-pre-commit-demo-tutorial) for a quick step-by-step tutorial
+
+---
+layout: two-cols
+---
+
+# Cookiecutter
+
+
+* **⁉️ Problem:** Setting up a python package with unit testing/CI/CD, pre-commits, license, packaging information, etc., is a lot of "scaffolding" to be added.
+
+<v-click>
+
+* **💡Solution:** Creating templates
+* **🧰 Making it practical:** [cookiecutter](https://pypi.org/project/cookiecutter/) is a command line utility for project templates
+
+</v-click>
+
+::right::
+
+<v-click>
+
+* **Example**: [Scientific Python Cookie](https://github.com/scientific-python/cookie): All the features, all the best-practices
+* **💡 Pro-tip**: [cruft](https://cruft.github.io/cruft/) is a cookiecutter extension that allows to propagate updates to the template back to the projects that use it
+* **💡 Pro-tip**: [copier](https://copier.readthedocs.io) is another powerful tool that supports updates (and works with the template above).
+
+* **Trying it out**:
+
+```bash
+pipx install cookiecutter
+# alternative: cruft or copier
+cookiecutter gh:scientific-python/cookie
+# e.g., select project type = hatchling
+# for a very simple start that grows with you.
+```
 
 </v-click>
 
