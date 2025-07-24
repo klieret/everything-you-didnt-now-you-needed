@@ -1039,7 +1039,7 @@ layout: two-cols
 
 # WebAssembly
 
-* **⁉️ Problem:** Distributing code is hard. Binder takes time to start & requires running the code one someone else's machine.
+* **⁉️ Problem:** Distributing code is hard. Binder takes time to start & requires running the code on someone else's machine.
 
 <v-click>
 
